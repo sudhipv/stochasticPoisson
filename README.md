@@ -92,9 +92,7 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 
 1. Use the given batch script : runff_niagara. Note this requires FreeFEM to be installed in the cluster.
 
-# Please refer to the article below and the repository if you use this code :
- https://arxiv.org/abs/2310.14649 (arXiv)
- 
+# Please refer to the article and the repository if you use this code
  
 
 
