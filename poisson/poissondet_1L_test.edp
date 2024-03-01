@@ -1,0 +1,82 @@
+
+
+// Poisson DDM code using PETSc and Different Preconditioners
+
+load "PETSc"
+load "hpddm"
+include "macro_ddm.idp"
+
+bool debug = true;
+
+real t1 = mpiWtime();
+
+mesh Th = square(getARGV("-m",20), getARGV("-n",20));
+
+mesh globalTh = Th;
+
+
+func Pk = P1;
+
+fespace Vh(Th,Pk);
+
+Vh u, v;
+
+func f = 0.0;
+varf a(u,v) = int2d(Th)(dx(u) * dx(v) + dy(u)* dy(v)) + int2d(Th)(f*v) + on(4, u = 0) + on(2, u = 1);
+
+
+//func f = 1.0;
+//varf a(u,v) = int2d(Th)(dx(u) * dx(v) + dy(u)* dy(v)) + int2d(Th)(f*v) + on(1,2,3,4, u = 0);
+
+
+Mat A;
+
+createMat(Th, A, Pk); // Parllel FE numbering // macroddm routine
+A = a(Vh, Vh, tgv=-1); // tgv=-1 provides non-symmetric elimination
+
+
+//matrix A = a(Vh, Vh, tgv=-1);
+
+//ObjectView(A, format="matlab",name="A.m");
+
+
+Vh rhs;
+
+rhs[] = a(0,Vh,tgv=-1);
+
+set(A, sparams = "-ksp_type gmres -pc_type hypre -pc_hypre_boomeramg_print_statistics -ksp_view_final_residual -ksp_pc_side right -ksp_rtol 1e-8 -ksp_converged_reason -ksp_view"); //
+
+// -pc_hypre_boomeramg_max_iter
+//set(A, sparams = "-ksp_type gmres -pc_type asm -ksp_view_final_residual -ksp_pc_side right -ksp_rtol 1e-8 -ksp_converged_reason"); //
+
+Vh sol,solD;
+
+sol[] = A^-1 * rhs[];
+
+//ObjectView(A,format="matlab",name="A.m");
+
+real t2 = mpiWtime() - t1;
+
+if(mpirank ==0) {
+cout << "time taken for solve is" << t2 << endl;
+}
+
+
+plotD(Th,sol,cmm="Final solution");
+
+/*
+// Find max error
+Vh utruth = x;
+real uerr;
+real [int] diff(Th.nv);
+//cout << sol[] << endl;
+diff = (utruth[] - sol[]);
+//cout << diff;
+uerr = A(diff,diff);
+real den = (A(utruth[],utruth[]));
+
+uerr = sqrt(uerr)/sqrt(den);
+
+if(mpirank ==0) cout << "L2 Norm of uerr is" << uerr << endl;
+
+*/

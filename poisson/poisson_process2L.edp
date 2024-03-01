@@ -1,0 +1,529 @@
+
+// ##### CODE FOR INTRUSIVE SSFEM FOR POISSON PROBLEM - Two level DOMAIN DECOMPOSITION
+
+// @ copyright Sudhi P V
+// Carleton University
+// Vector Approach
+
+// Look readme.txt for instructions
+
+
+include "getARGV.idp"
+load "PETSc"
+macro dimension()2//
+include "macro_ddm.idp"       // additional DDM functions
+
+load "gmsh"
+
+real t1 = mpiWtime();
+
+// For solution output in vtk format
+load "iovtk"
+int[int] Order = [1]; // 1 - P1 lagrange elements 0 - P0
+
+int level = 2;
+int s = 2;
+
+Mat[int] MG(level);
+matrix[int] P(level - 1);
+
+mesh [int] Th(level);
+
+
+
+/// Changing to structures squre changes boundary labels to 1,2,3,4. Don't forget to change labels in weak form.
+real m = getARGV("-m", 300);
+real n = getARGV("-n", 300);
+Th[level-1] = square(m,n);
+
+
+//Th[level-1] = gmshload("./square.msh"); // 606 vertices
+
+if(mpirank == 0) cout << "Number of Vertices for coarse grid  " << Th[level-1].nv << endl;
+
+if(mpirank == 0) cout << "Number of Vertices for fine mesh is  " << (m*2+1)^2  << endl;
+
+include "./macros/ssinit.edp"
+
+buildMatRecursive(Th, s, level, P, MG, Pk, mpiCommWorld);
+
+//if(mpirank == 0) cout << "Number of Vertices for fine mesh in process  "+ mpirank << "  " + Th[0].nv << endl;
+
+//plot(Th[0], cmm="fine");
+
+//plot(Th[1], cmm="coarse");
+
+
+// ##################### Factorial Function ###################################
+
+func real fact(real num)
+{
+
+    real temp = 1.0;
+
+    for(int n = 0; n < num ; n++)
+    {
+
+        temp = temp * (n+1);
+    }
+
+
+    return temp;
+}
+
+
+// #############################################################################
+
+
+int[int] labs = labels(Th[0]);
+
+if(mpirank == 0) cout<<labs<< endl;
+
+if(mpirank ==0)
+{
+
+    cout<<"number of random variable  "<<nRV<< endl;
+    cout<<"order of input  "<<ordIN<< endl;
+    cout<<"order of output  "<<ordOUT<< endl;
+
+    cout << "Number of input PC   " << fact(ordIN+nRV)/ ( fact(ordIN) * fact(nRV) )  << endl;
+    cout << "Number of output PC  " << fact(ordOUT+nRV)/ ( fact(ordOUT) * fact(nRV) ) << endl;
+
+
+    cout<<"Mean of Gaussian  "<< muG<< endl;
+    cout<<"Sd of Gaussian  "<< sigmaG<< endl;
+    cout << "Size of linear System  " << (m*2+1)^2 * outPC << endl;
+
+}
+
+// #############################################################################
+
+
+real [int,int] sindex(25,2);
+real [int,int] mindex(outPC,nRV);
+
+
+string locsidx = "./kledata/sortIndex.dat";
+ifstream file11(locsidx);
+
+real k11,k22;
+
+for (int i = 0; i < 25 ; i++)
+{
+
+file11 >> k11 >> k22;
+
+//cout << c << endl;
+//cout << d << endl;
+
+sindex(i,0) = k11;
+sindex(i,1) = k22;
+
+//B(i,0) = atof(std);
+
+}
+
+if(mpirank == 0) cout << "sindex is " << sindex << endl;
+
+// #############################################################################
+
+
+string locmidx = "./kledata/multiIndex000"+ordOUT+"000"+nRV+".dat";
+
+ifstream file22(locmidx);
+
+
+real n11,n22;
+
+for (int i = 0; i < outPC ; i++)
+{
+
+
+    for (int j =0 ; j < nRV ; j++)
+    {
+        file22 >> mindex(i,j);
+    }
+
+//cout << c << endl;
+//cout << d << endl;
+
+
+
+//B(i,0) = atof(std);
+
+}
+
+if(mpirank == 0) cout << "mindex for file " << locmidx << " is " << mindex << endl;
+
+
+// #############################################################################
+
+
+func real [int] arraysquare(real[int] kk, real idx, real varFactor,real nt)
+{
+
+    real [int] arss(nt);
+
+    for(int i =0; i < nt; i ++ )
+    {
+
+            arss(i) = (kk(i)^idx)/sqrt(varFactor);
+            //cout << "arss is " << arss <<endl;
+
+    }
+
+
+    //fespace Vh3(Th[0], P1);
+    //Vh3 arssfun = arss;
+    //savevtk("./output/arss"+idx+".vtu", Th[0], arssfun,bin = 1, order = Order);
+
+
+    return arss;
+
+
+
+}
+
+// #############################################################################
+
+
+
+func real[int] diffLognormalRV(real muG, real sigmaG)
+{
+
+    real [int] lg(6);
+    // Log normal random variable expansion
+
+    real muL =  exp(muG + 0.5 * sigmaG^2);
+
+    lg (0) = muL * (1);
+    lg (1) = muL * (sigmaG);
+    lg (2) = muL * (sigmaG^2)/sqrt(2);
+    lg (3) = muL * (sigmaG^3)/sqrt(6);
+    lg (4) = muL * (sigmaG^4)/sqrt(24);
+    lg (5) = muL * (sigmaG^5)/sqrt(120);
+
+
+    //cout << "li inisde rv " << lg << endl;
+    //real Li = muL * sigmaG ^ i /
+
+    return lg;
+
+}
+
+
+
+
+func real[int] diffLognormal(int i, real nRV, real muG, real sigmaG, real [int,int] sIndex, real [int,int] mIndex)
+{
+
+
+// Get the multiindex data - For each expansion
+//Get the sortindex for eigen values - according to the largest eigen value after tensor product for 2 dimension
+// Calculate the two-dimensional eigen function using these values.
+// Equations Ajits thesis page 186 - Appendix A
+
+
+    int pcidx = i;
+    // Log normal random variable expansion
+    fespace Vh2(Th[0], P1);
+    Vh2 gfun;
+
+    real mul = exp(muG + 0.5 * sigmaG^2);
+
+
+    Vh2 gg1,gg2,gg2d;
+
+    real [int,int] gfun2D(Vh2.ndof,nRV);
+
+    real [int] multipliers = [0.92184, 0.49248, 0.29374, 0.20437, 0.15576];
+    real [int] omegas = [1.30654, 3.67319, 6.58462, 9.63168, 12.72324];
+
+
+    int Xindex,Yindex;
+
+
+    for (int jj=0; jj< nRV; jj++)
+    {
+        Xindex = sIndex(jj,0);
+        //# print('Xindex', Xindex)
+        //### First Dimesnion
+        if( fmod(Xindex,2) == 0)
+        {
+            //##print("even")
+            gg1 = multipliers(Xindex-1) * ( sin(omegas(Xindex-1)*(x-0.5)) );
+            //cout << "gg1 is " << gg1[] << endl;
+        }
+        else
+        {
+            //##print("odd")
+            gg1 = multipliers(Xindex-1) * ( cos(omegas(Xindex-1)*(x-0.5)) );
+            //cout << "gg1 odd  is " << gg1[] << endl;
+
+        }
+
+        //### Second Dimension
+        Yindex = sIndex(jj,1);
+        if( fmod(Yindex,2) == 0)
+        {
+            //##print("even")
+            gg2 = multipliers(Yindex-1) * ( sin(omegas(Yindex-1)*(y-0.5)) );
+            //cout << "gg2 is " << gg2[] << endl;
+
+        }
+        else
+        {
+            //print("odd")
+            gg2 = multipliers(Yindex-1) * ( cos(omegas(Yindex-1)*(y-0.5)) );
+            //cout << "gg2 odd is " << gg2[] << endl;
+
+        }
+
+        gg2d =  sigmaG * gg1 * gg2;
+        gfun2D(:,jj) = gg2d[];
+        //g.append(sigma*gg1*gg2)
+
+
+        //savevtk("./output/gfun2d_"+jj+".vtu", Th[0], gg2d,bin = 1, order = Order, append = true);
+
+
+    }
+
+
+//cout << "gfun2d is " << gfun2D(:,0) << endl;
+
+//exit(1);
+
+
+// Now calculating the PC terms for Log normal expansion using this 2d eigen functions
+
+
+Vh2 PClogN;
+Vh2 pcterms;
+
+pcterms = 1.0;
+
+for (int jj=0; jj < nRV ; jj++)
+{
+
+    real idx = mIndex(pcidx,jj);
+
+    if(idx == 0)
+        {
+        PClogN = 1.0;
+        }
+    else if(idx ==1)
+        {
+        PClogN[] = gfun2D(:,jj);
+        }
+    else
+        {
+        real varFactor = fact(idx);
+        PClogN[] = arraysquare(gfun2D(:,jj),idx,varFactor, Vh2.ndof);
+
+        //PClogN = (gfun2D(:,jj).^(idx)) / ( sqrt(varFactor) )
+        }
+
+
+    pcterms = pcterms * PClogN;
+
+
+
+}
+
+
+    pcterms = pcterms * mul;
+
+    //savevtk("./output/pcterms_"+pcidx+".vtu", Th[0], pcterms,bin = 1, order = Order);
+
+
+    return pcterms[];
+
+
+}
+
+// #############################################################################
+
+// Load Cijk - Multiplication Tensor
+
+string loc;
+
+
+loc = "./kledata/cijk000"+ordOUT+"000"+nRV;
+
+
+fespace Vh2(Th[0], P1);
+
+
+
+real [int] Li(Vh2.ndof);
+
+Vh2 [real] Cd(inPC);
+
+real [int] lgrv (6);
+
+
+int flagcijk = 0;
+int idcijk = 0;
+
+for(int i =0; i< inPC ; i++)
+{
+
+    Li = diffLognormal(i, nRV, muG, sigmaG, sindex, mindex);
+    Cd[i][] = Li;
+
+    //savevtk("./output/incoeff_"+i+".vtu", Th[0], Ci[i],bin = 1, order = Order);
+
+}
+
+
+if(mpirank ==0 ) cout << "Finished generating log normal input coefficients for rank " << mpirank << endl;
+// #############################################################################
+//IFMACRO(notrun)
+
+// ##################### WEAK FORMS #####################################################################
+
+fespace Wh(Th[0], Pk);
+
+fespace Vh(Th[0], P1);
+
+Wh <real> def(b);
+
+macro Grad(u) [dx(u),dy(u)]         // EOM
+
+func f = 1;
+
+include "./macros/ssweakcomp.edp"
+
+real [int] rhs(Wh.ndof);
+
+
+//set(MG[0], sparams = "-ksp_type gmres -pc_type hypre -pc_hypre_boomeramg_max_iter 2 -ksp_view_final_residual" +
+//    "-ksp_rtol 1e-8 -ksp_converged_reason"); //
+// bs=4 is for hypre solver setting the number of components for vector PDEs
+
+set(MG, P, sparams = "-pc_type mg -pc_mg_type multiplicative -ksp_monitor -ksp_pc_side right -ksp_type fgmres -ksp_max_it 200");
+//set(MG, 0, sparams = "-mg_coarse_ksp_type gmres -mg_coarse_pc_type asm -mg_coarse_ksp_max_it 100 -mg_coarse_ksp_monitor -mg_coarse_ksp_converged_reason");
+set(MG, 0, sparams = "-mg_coarse_ksp_type gmres -mg_coarse_pc_type hypre -mg_coarse_ksp_pc_side right -mg_coarse_ksp_monitor -mg_coarse_ksp_converged_reason", bs=outPC);
+//-mg_coarse_pc_hypre_boomeramg_max_iter 5
+set(MG, level - 1, sparams = "-mg_levels_pc_type asm -mg_levels_pc_asm_type basic -mg_levels_sub_pc_type lu -mg_levels_sub_pc_factor_mat_solver_type mumps");
+
+
+//if(mpirank == 0) cout << "Starting weak form generation " << endl;
+
+real tp1 = mpiWtime();
+
+for(int l=0;l<level;l++)
+
+    {
+
+        fespace Whc(Th[l], Pk);
+
+        /*
+        varf stoPoisson(def(U), def(V)) = int2d(Th[l])(  coeffmult(U,V) ) + int2d(Th[l])(UtransV(b,V))
+                                        //+ on(7,8,9,10, U = 0,U1 = 0, U2 = 0, U3=0); // Unstructured square mesh from gmsh
+                                        + on(1,2,3,4, U = 0,U1 = 0, U2 = 0, U3=0); // Structured Square mesh
+
+        */
+        include "./macros/ssweakform1.edp"
+
+        if(mpirank ==0 ) cout << "Assembling matrices for level " << l <<" and rank " << mpirank << endl;
+
+        MG[l] = stoPoisson(Whc,Whc,tgv=-1);
+        if(l==0) rhs = stoPoisson(0,Whc,tgv=-1);
+
+    }
+
+
+
+Wh <real> def(U);
+
+
+real tp6 = mpiWtime() - tp1;
+
+if(mpirank ==0) cout << "Assembly time " << tp6 << endl;
+
+if(mpirank ==0 ) cout << "Exited Assembling " << mpirank << endl;
+
+
+//if(mpirank == 0) ObjectView(MG[1], format="matlab", name="C.m");
+//if(mpirank == 0) ObjectView(MG[0], format="matlab", name="F.m");
+
+if(mpirank ==0 ) cout << "Starting solve for " << mpirank << endl;
+
+set(MG[0],setup = 1);
+U[] = MG[0]^(-1) * rhs;
+
+
+// For eigen analysis
+
+
+//load "SLEPc"
+//EPSSolve(MG[0], sparams = "-eps_view -eps_nev 25 -eps_largest_real -eps_view_values -eps_smallest_real");
+
+//-eps_nev 25
+
+
+real t2 = mpiWtime() - t1;
+
+if(mpirank ==0) {
+cout << "time taken for solve is" << t2 << endl;
+}
+//cout << rhs << endl;
+
+//plot(U, cmm="0");
+//plot(U1, cmm="1st");
+//plot(U2, cmm="2nd");
+// Solution Output
+
+IFMACRO(notrun)
+
+Vh [real] sol(outPC);
+
+
+include "./macros/ssolution.edp"
+
+
+/*
+plot(sol[0], wait = 1, cmm="Mean");
+plot(sol[1], wait = 1, cmm="PC 1");
+plot(sol[2], wait = 1, cmm="PC 2");
+plot(sol[3], wait = 1, cmm="PC 3");
+*/
+
+
+// Calculation of standard deviation
+Vh Ustd = 0;
+
+for(int n=1; n<outPC; n++)
+{
+    Ustd = Ustd + sol[n]^2;
+}
+
+Ustd = sqrt(Ustd);
+
+//plot(Ustd, wait=1,cmm="SD");
+
+
+
+for(int k =0; k < outPC ; k++)
+{
+savevtk("./output/U"+k+".vtu", Th[0], sol[k],bin = 1, order = Order, append = true);
+}
+
+savevtk("./output/U_std"+".vtu", Th[0], Ustd,bin = 1, order = Order, append = true);
+
+//ObjectView(MG[0], object = "ksp");
+
+ENDIFMACRO
+
+
+
+
+
+
+
+
+
+
+
