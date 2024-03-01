@@ -1,0 +1,472 @@
+include "getARGV.idp"
+
+real cpu=clock();
+
+ofstream ff("./macros/ssinit.edp");
+
+real ordOUT = getARGV("-ordOUT", 3);
+real nRV = getARGV("-nRV", 3);
+
+real ordIN = getARGV("-ordIN", 2);
+
+real muG = getARGV("-muG", 0);
+real sigmaG = getARGV("-sigmaG", 0.3);
+real alpha = getARGV("-alpha",1.0);
+// For making RV case
+int flagRV = getARGV("-flagRV", 0); // Not ready for nonlinear case
+
+
+func real fact(real num)
+{
+
+    real temp = 1.0;
+
+    for(int n = 0; n < num ; n++)
+    {
+
+        temp = temp * (n+1);
+    }
+
+
+    return temp;
+}
+
+real inPC  = fact(ordIN+nRV)/( fact(ordIN) * fact(nRV) ) ;
+real outPC = fact(ordOUT+nRV)/ ( fact(ordOUT) * fact(nRV) );
+
+ff << "real nRV = " << nRV << ";" << endl;
+ff << "real muG = " << muG << ";" << endl;
+ff << "real sigmaG = " << sigmaG << ";" << endl;
+ff << "real ordOUT = "<< ordOUT <<";" << endl;
+ff << "real ordIN = " << ordIN << ";" << endl;
+ff << "real inPC = " << inPC << ";" << endl;
+ff << "real outPC = " << outPC << ";" << endl;
+ff << "real alpha = " << alpha << ";" << endl;
+ff << "int flagRV = " << flagRV << ";" << endl;
+
+
+int N = outPC;
+assert(N > 0);
+
+
+// Generating fespace
+//fespace Vh(Th, P1, P1, P1, P1);
+
+ff<< "func Pk = [";
+for(int i = 0; i < N; ++i) {
+    ff << " P1";
+    if(i != N-1)
+        ff << ",";
+    else
+        ff << "];";
+}
+ff << endl;
+
+
+//Generating macro
+//macro def(i)[i, i#1]// EOM          // vector field definition
+
+ff<< "macro def(i)[i,";
+for(int i = 0; i < N-1; ++i) {
+    ff << " i#"<<i+1;
+    if(i != N-2)
+        ff << ",";
+    else
+        ff << "] //EOM";
+}
+ff << endl;
+
+
+//macro init(i)[i, i]// EOM           // vector field initialization
+
+ff<< "macro init(i)[";
+for(int i = 0; i < N; ++i) {
+    ff << "i";
+    if(i != N-1)
+        ff << ", ";
+    else
+        ff << "]//EOM";
+}
+ff << endl;
+
+cout << "finished ssinit.edp" << endl;
+
+//###################################################################################
+
+
+
+
+ofstream fh("./macros/ssolution.edp");
+
+
+/*
+sol[0] = U;
+sol[1] = U1;
+sol[2] = U2;
+sol[3] = U3;
+*/
+
+fh << "sol[0] = UNL;";
+fh << endl;
+for(int i = 0; i < N-1; ++i) {
+    fh << "sol[" << i+1 << "] = "<< "UNL"<< i+1 <<";"<< endl;
+}
+
+fh << endl;
+
+
+ofstream fi("./macros/ssweakform1.edp");
+
+
+fi << "varf stoNLPoisson(def(UNL), def(VNL)) = int2d(Th[l])(  coeffmultNL(UNL,VNL) ) + int2d(Th[l])(UtransV(b,VNL))"+
+                                                    "+ on(1,2,3,4, UNL = 0,";
+
+ for (int i = 1; i < N-1; ++i)
+ {
+
+     fi << "UNL"<<i<<"=0,";
+
+
+ }
+
+ fi << "UNL"<<outPC-1<<"=0);";
+
+
+
+ofstream fj("./macros/ssweakform2.edp");
+
+fj << "varf stoNLPoisson(def(UNL), def(VNL)) = int2d(Th[l])(  coeffmultNL(UNL,VNL) ) + int2d(Th[l])(UtransV(b,VNL))"+
+                                                    "+ on(7,8,9,10, UNL = 0,";
+
+ for (int i = 1; i < N-1; ++i)
+ {
+
+     fj << "UNL"<<i<<"=0,";
+
+
+ }
+
+ fj << "UNL"<<outPC-1<<"=0);";
+
+
+
+cout << "finished ssweakform.edp" << endl;
+
+
+
+
+//###################################################################################
+
+
+//###################################################################################
+
+
+//###################################################################################
+
+
+//###################################################################################
+
+
+//###################################################################################
+//###################################################################################
+
+
+// ####################################################################################
+// ####################################################################################
+// #################Part below can be uncommented for small numbe rof RV; for large number of coefficients use c++ code
+// or else write all the above code in to c++ and just use one code    ##################################
+// ####################################################################################
+
+/* ################just for information - not a part of code //#####################
+macro coeffmult3(u,v) ( Cd(0,0) * Grad(u)'*Grad(v) + Cd(0,1) * Grad(u)'*Grad(v#1) + Cd(0,2)*Grad(u)'*Grad(v#2) + Cd(0,3)*Grad(u)'*Grad(v#3) +
+                        Cd(1,0) * Grad(u#1)'*Grad(v) + Cd(1,1) * Grad(u#1)'*Grad(v#1) + Cd(1,2)*Grad(u#1)'*Grad(v#2) + Cd(1,3)*Grad(u#1)'*Grad(v#3) +
+                        Cd(2,0) * Grad(u#2)'*Grad(v) + Cd(2,1) * Grad(u#2)'*Grad(v#1) + Cd(2,2)*Grad(u#2)'*Grad(v#2) + Cd(2,3)*Grad(u#2)'*Grad(v#3) +
+                        Cd(3,0) * Grad(u#3)'*Grad(v) + Cd(3,1) * Grad(u#3)'*Grad(v#1) + Cd(3,2)*Grad(u#3)'*Grad(v#2) + Cd(3,3)*Grad(u#3)'*Grad(v#3)
+                         ) //EOM)
+*/ //################################################
+
+
+
+/*
+ofstream fg("./macros/ssweakcomp.edp");
+
+
+// macro UtransV2(u,v)(u*v + u#1 * v#1 + u#2 * v#2) //EOM
+
+fg<< "macro UtransV(u,v)(u*v + ";
+for(int i = 0; i < N-1; ++i) {
+    fg << "u#" << i+1 << "*" << "v#"<< i+1;
+    if(i != N-2)
+        fg << " + ";
+    else
+        fg << ")//EOM";
+}
+fg << endl;
+
+
+
+// [Uprev,Uprev1,Uprev2,Uprev3] = [0,0,0,0];
+
+fg<< "[Uprev,";
+for(int i = 0; i < N-1; ++i) {
+    fg << "Uprev" << i+1;
+    if(i != N-2)
+        fg << ",";
+    else
+        fg << "] ";
+}
+
+
+fg<< "=[1,";
+for(int i = 0; i < N-1; ++i) {
+    fg << "0";
+    if(i != N-2)
+        fg << ",";
+    else
+        fg << "];";
+}
+
+
+fg << endl;
+
+fg<< "[b,";
+for(int i = 0; i < N-1; ++i) {
+    fg << "b" << i+1;
+    if(i != N-2)
+        fg << ",";
+    else
+        fg << "] ";
+}
+
+
+fg<< "=[f,";
+for(int i = 0; i < N-1; ++i) {
+    fg << "0";
+    if(i != N-2)
+        fg << ",";
+    else
+        fg << "];";
+}
+
+
+fg << endl;
+
+cout << "finished initial part of ssweakcomp.edp" << endl;
+
+*/
+
+
+/*
+
+string loct;
+
+if (flagRV == 1)
+{
+ loct = "./kledata/Tijkl/Td_O10_D1";
+}
+else
+{
+ loct = "./kledata/Tijkl/Td_O"+ordOUT+"_D"+nRV;
+}
+
+
+ifstream file1(loct);
+
+int nTd;
+real k2,k3,k4;
+
+
+file1 >> nTd;
+
+cout << "td has " << nTd << " elements " << endl;
+
+real [int,int] Td(nTd,3);
+
+for (int i = 0; i < nTd ; i++)
+{
+
+file1 >> k2 >> k3 >> k4;
+
+//cout << k2 << k3 << k4 << k5 << endl;
+
+Td(i,0) = k2;
+Td(i,1) = k3;
+Td(i,2) = k4;
+
+}
+
+
+//cout << Td << endl;
+
+cout << "###################################################################################"<< endl;
+cout << "####################################Td loaded ############################################"<< endl;
+cout << "###################################################################################" << endl;
+
+
+//###################################################################################
+
+// FreeFEM is very slow with nested loops - It is better to use C++ code to generate the weakform file for large number of Tijkl coefficient values
+// especially more than 4 RV and order 3.
+
+//###################################################################################
+
+// For random process model we have to change each cd(j,k) with the corresponding spatially varying finite element functions
+// which are summed up over input random variables.
+
+// uc is kj and ucnl is jkl
+
+// Nonlinear case - 4th order tensor is Tijkl is summed over i values with process coefficient arrays.
+// 3 dimesnional matrix is used to save the coefficient values.
+
+//###################################################################################
+
+fg << "macro coeffmultNL(u,v)(";
+
+int checknum = 0;
+
+for(int l =0; l< outPC ; l++)
+{
+    for(int k =0; k< outPC ; k++)
+    {
+
+
+        fg << endl;
+
+        // Exact values
+        fg << "(" << "uc" << l << "[" << k << "] ";
+
+        // For checking the expression
+        //fg << "( Cd(" << k << "," << l << ") + ";
+
+
+        for(int j =0; j< outPC ; j++)
+        {
+
+
+            for(int id = 0; id <nTd ; id ++ )
+            {
+
+                if(Td(id,0) == j && Td(id,1) == k && Td(id,2) == l )
+                {
+
+                    //cout << " id "<< id << " j " << j <<" k "<< k << " l " << l << endl;
+
+                    cout << " j " << j <<" k "<< k << " l " << l << endl;
+
+
+                    fg << " + " ;
+                    //cout << Td(id,3) << " "<< j << " "<< k << " " << l  << endl;
+                    if(j != 0)
+                    {
+
+                        // Exact values
+                        fg << "ucnl"<<j<<"j"<<k<<"k"<<"["<<l<<"]" << "* Uprev#"<<j;
+
+                        // For checking the expression
+                        //fg << " Td("<< j <<","<< k <<","<< l << ")" << "* Uprev#"<<j;
+                    }
+                    else
+                    {
+                        // Exact values
+                        fg << "ucnl"<<j<<"j"<<k<<"k"<<"["<<l<<"]"  << "* Uprev ";
+
+                        // For checking the expression
+                        //fg << " Td("<< j <<","<< k <<","<< l << ")" << "* Uprev";
+                    }
+
+                    checknum = checknum + 1;
+                    break;
+
+                }
+
+            }
+
+
+        }
+
+
+        fg << " ) * " ;
+        if(k == 0 )
+        {
+            fg << " Grad(u)' * ";
+        }
+        else
+        {
+           fg << " Grad(u#" << k << ")' * ";
+        }
+
+        if(l == 0 )
+        {
+            fg << " Grad(v) ";
+        }
+        else
+        {
+           fg << " Grad(v#" << l << ") ";
+        }
+
+        if(l == N-1 && k== N-1)
+            fg << " ) //EOM";
+        else
+            fg << " + ";
+
+
+
+    }
+}
+
+
+fg << endl;
+
+cout << "second loop finished with number of elements" << checknum << endl;
+
+cout << "finished ssweakcomp.edp" << endl;
+
+cout << "CPU time = " << (clock()-cpu) << endl;
+
+// ####################################################################################
+
+*/
+
+// [b,b1,b2,b3] = [f,0,0,0];
+
+
+// ####################################################################################
+// ####################################################################################
+// ####################################################################################
+
+
+
+//###################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+varf stoNLPoisson(def(UNL), def(VNL)) = int2d(Th[l])(  coeffmultNL(UNL,VNL) ) + int2d(Th[l])(UtransV(b,VNL))+ on(7,8,9,10, UNL = 0,UNL1=0,UNL2=0,UNL3=0,UNL4=0,UNL5=0,UNL6=0,UNL7=0,UNL8=0,UNL9=0);
