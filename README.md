@@ -2,15 +2,18 @@
 Linear and Nonlinear Poisson problems with diffusion coefficient modelled as random process solved using multilevel domain decomposition-based methods.
 
 
- ###################### Sudhi P
-######################
-###################### Ph.D Student ######################
-######################Civil and Environmental Engineering######################
-###################### Carleton University ######################
-###################### 13/11/2022 ######################
+# Folder Structure
+
+1. poisson  : Codes and files related to stochastic linear Poisson problem
+
+ 1.1 kledata : Multiplication tensors required for running the stochastic code
+ 1.2 macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
+ 1.3 macros : current generated macros for the problem
+ 1.1 output : outputs with .vtu files
 
 
-// ######################Instructions to run NL stochastic Poisson in user machine ##############################################
+
+# Instructions to run NL stochastic Poisson in user machine 
 
 
 1. run the preprocessing step first, sequentially - single core.
