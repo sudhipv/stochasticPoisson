@@ -31,14 +31,13 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 		  ssweakform1.edp
 		  ssweakform2.edp
 
-	1.2 Change the values of 
+	1.2 Change the values of random parameters inside "weakformNL.cpp" according to the "ssinit.edp" values.
 
+			int ordIN = 2;
   			int nRV = 3;
     			int ordOUT = 3;
-    			int inPC = 10;
-    			int outPC = 20;
 
-		inside "weakformNL.cpp" according to the "ssinit.edp" values.
+		
         1.3 g++ weakform.cpp
         1.4 ./a.out
 
