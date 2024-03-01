@@ -1,4 +1,5 @@
-# stochasticPoisson
+# stochasticPoisson : based on the article "Multilevel Scalable Solvers for Stochastic Linear and Nonlinear Problems" (https://arxiv.org/abs/2310.14649)
+
 Linear and Nonlinear Poisson problems with diffusion coefficient modelled as random process solved using multilevel domain decomposition-based methods.
 
 
@@ -90,6 +91,11 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 # Instructions to run stochastic Poisson in cluster
 
 1. Use the given batch script : runff_niagara. Note this requires FreeFEM to be installed in the cluster.
+
+# Please refer to the article below and the repository if you use this code :
+ https://arxiv.org/abs/2310.14649 (arXiv)
+ 
+ 
 
 
 
