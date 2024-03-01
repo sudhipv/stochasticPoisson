@@ -10,6 +10,7 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 3. macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
 4. macros : current generated macros for the problem
 5. output : outputs with .vtu files
+6. cluster : files required for running the code in cluster
 
 # Software needed
 1. FreeFEM
@@ -96,7 +97,7 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 
 # Instructions to run stochastic Poisson in cluster
 
-1. Use the given batch script : runff_niagara. Note this requires FreeFEM to be installed in the cluster.
+1. Use the given batch script : runff_beluga_withparam.sh given inside folder ./cluster/. Note this requires FreeFEM to be installed in the cluster.
 
 # Please refer to the article and the repository if you use this code
  

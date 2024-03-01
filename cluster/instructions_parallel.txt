@@ -1,0 +1,77 @@
+Instructions to run code in Parallel for FreeFEM++
+
+
+
+1. Create a Freefem init file as per documentation (https://doc.freefem.org/introduction/installation.html) under heading Environment variables and init file.
+
+inside $(HOME)/.freefem++.pref.
+
+
+    1.1 cd $(HOME)
+
+    1.2 vi .freefem++.pref
+
+    ############### Sample of file #################################
+
+
+    verbosity = 0
+    loadpath += "/home/sudhipv/software/FreeFem-sources/plugin/mpi"
+    includepath += "/home/sudhipv/software/FreeFem-sources/idp"
+
+
+    #################################################################
+
+
+2.(If its not already loaded) or same modules as you used for installation.
+
+    Only for Niagara, Graham and Cedar default has StdEnv/2020
+    2.1 module load CCEnv
+    2.2 module load StdEnv/2020
+    2.3 module load intelmpi
+
+3. Clone the repository
+
+    3.1 git clone https://sudhipv@bitbucket.org/sudhipv/nl_ff.git
+
+
+4. cd nl_ff/ff_codes/DD_NL-Poisson/
+
+5. Either allocate 2 nodes with 32 cores each for 15 min using command below
+
+
+    5.1 salloc --account=def-asarkar --nodes=2 --ntasks-per-node=32 --time=00:30:00
+
+    then run
+
+    Try within node (4, 8 cores) and then with multiple nodes (45, 50) accordingly as per total cores available.
+    5.2 mpirun -n 40 /home/sudhipv/packages/FreeFem-sources/src/mpi/FreeFem++-mpi poisson_petsc_ddm.edp
+
+OR
+
+6. Submit script using batch file as runff_graham.sh inside present folder or else you can access it from inside doc folder.
+
+    6.1 sbatch runff_graham.sh
+
+7. Output can be visualized by uncommenting the savevtk command inside the covid_DD.edp code. The vtk files are only created for some particular time steps.
+Be sure to create the output folder to save these vtu files.
+
+
+It will create files similar to ones shown below. Here the code is ran with 4 subdomains. ".pvd" file combines all the vtu files.
+
+u_poisson_4_0000_0.vtu
+u_poisson_4_0000_1.vtu
+u_poisson_4_0000_2.vtu
+u_poisson_4_0000_3.vtu
+u_poisson_4.pvd
+
+8. The code also produces compartment.dat, node_250.dat,node_500.dat files in the same folder where the code exists. These .dat files contains the temporal evolution of all compartments for the whole domain and at specific points namely 250, 500.
+
+
+
+
+
+
+
+
+
+
