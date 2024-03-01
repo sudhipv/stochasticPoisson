@@ -6,11 +6,10 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 # Folder Structure
 
 1. poisson/NLPoisson  : Codes and files related to stochastic linear Poisson problem
-
-	 1.1 kledata : Multiplication tensors required for running the stochastic code
-	 1.2 macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
-	 1.3 macros : current generated macros for the problem
-	 1.1 output : outputs with .vtu files
+2. kledata : Multiplication tensors required for running the stochastic code
+3. macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
+4. macros : current generated macros for the problem
+5. output : outputs with .vtu files
 
 # Software needed
 1. FreeFEM
