@@ -11,9 +11,13 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
  1.3 macros : current generated macros for the problem
  1.1 output : outputs with .vtu files
 
+# Software needed
+1. FreeFEM
+2. Paraview
+3. g++
+4. MATLAB
 
-
-# Instructions to run NL stochastic Poisson in user machine 
+# Instructions to run stochastic Poisson in user machine 
 
 
 1. run the preprocessing step first, sequentially - single core.
@@ -81,6 +85,11 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 
 
 3. .vtu files inside ./output folder.
+
+
+# Instructions to run stochastic Poisson in cluster
+
+1. Use the given batch script : runff_niagara. Note this requires FreeFEM to be installed in the cluster.
 
 
 
