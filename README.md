@@ -31,7 +31,7 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 		  ssweakform1.edp
 		  ssweakform2.edp
 
-	1.2 Change the values of random parameters inside "weakformNL.cpp" according to the "ssinit.edp" values.
+          1.2 Change the values of random parameters inside "weakformNL.cpp" according to the "ssinit.edp" values.
 
 			int ordIN = 2;
   			int nRV = 3;
@@ -63,10 +63,10 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 
 2. run the main code
 
-    2.1 ff-mpirun -n 4 poissonNL_process2L.edp -m 50 -n 50
+           2.1 ff-mpirun -n 4 poissonNL_process2L.edp -m 50 -n 50
 
 
-    output :
+   		 output :
 
 
             Number of Vertices for coarse grid  2601
