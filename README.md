@@ -13,7 +13,7 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 6. cluster : files required for running the code in cluster
 
 # Software needed
-1. FreeFEM
+1. FreeFEM : Installation instructions for FreeFEM in Digital Alliance of Canada clusters is given in ./clusters/freefem_install.sh
 2. Paraview
 3. g++
 4. MATLAB
