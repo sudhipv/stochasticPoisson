@@ -1,0 +1,99 @@
+=================================================
+   FreeFEM 4.13: examples/eigen/test-suite.log
+=================================================
+
+# TOTAL: 17
+# PASS:  0
+# SKIP:  17
+# XFAIL: 0
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+SKIP: BeamEigenValue.edp
+========================
+
+SKIP ../../src/nw/FreeFem++ -nw ./BeamEigenValue.edp
+
+SKIP: BeamEigenValueperio.edp
+=============================
+
+SKIP ../../src/nw/FreeFem++ -nw ./BeamEigenValueperio.edp
+
+SKIP: condition-number.edp
+==========================
+
+SKIP ../../src/nw/FreeFem++ -nw ./condition-number.edp
+
+SKIP: free-cyl-axi.edp
+======================
+
+SKIP ../../src/nw/FreeFem++ -nw ./free-cyl-axi.edp
+
+SKIP: Lap3dEigenValue.edp
+=========================
+
+SKIP ../../src/nw/FreeFem++ -nw ./Lap3dEigenValue.edp
+
+SKIP: LapComplexEigenValue.edp
+==============================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapComplexEigenValue.edp
+
+SKIP: LapEigenValue.edp
+=======================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapEigenValue.edp
+
+SKIP: LapEigenValueFunc.edp
+===========================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapEigenValueFunc.edp
+
+SKIP: LapEigenValueFuncV2.edp
+=============================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapEigenValueFuncV2.edp
+
+SKIP: LapnosymComplexEigenValue.edp
+===================================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapnosymComplexEigenValue.edp
+
+SKIP: LapnosymEigenValue.edp
+============================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapnosymEigenValue.edp
+
+SKIP: neuman.edp
+================
+
+SKIP ../../src/nw/FreeFem++ -nw ./neuman.edp
+
+SKIP: Stokes-eigen.edp
+======================
+
+SKIP ../../src/nw/FreeFem++ -nw ./Stokes-eigen.edp
+
+SKIP: VP-Steklov-Poincare.edp
+=============================
+
+SKIP ../../src/nw/FreeFem++ -nw ./VP-Steklov-Poincare.edp
+
+SKIP: WGM-sphere.edp
+====================
+
+SKIP ../../src/nw/FreeFem++ -nw ./WGM-sphere.edp
+
+SKIP: LapEigenBeltrami.edp
+==========================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapEigenBeltrami.edp
+
+SKIP: LapEigenValueFuncComplex.edp
+==================================
+
+SKIP ../../src/nw/FreeFem++ -nw ./LapEigenValueFuncComplex.edp
+

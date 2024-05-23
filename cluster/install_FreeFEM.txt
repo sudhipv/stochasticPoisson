@@ -1,0 +1,92 @@
+
+###############################################################################################################
+Installation of FreeFem V4.13 in Compute Canada Clusters - PETSC AND FREEFEM SEPERATE
+###############################################################################################################
+
+
+
+Tested - BELUGA
+
+1. module --force purge --all
+2. module load StdEnv/2023
+3. module load cmake/3.27.7
+4. module load perl/5.36.1
+
+Currently Loaded Modules:
+  1) CCconfig            6) ucx/1.14.1            11) flexiblas/3.3.1
+  2) gentoo/2023   (S)   7) libfabric/1.18.0      12) imkl/2023.2.0   (math)
+  3) gcccore/.12.3 (H)   8) pmix/4.2.4            13) StdEnv/2023     (S)
+  4) gcc/12.3      (t)   9) ucc/1.2.0             14) cmake/3.27.7    (t)
+  5) hwloc/2.9.1        10) openmpi/4.1.5    (m)  15) perl/5.36.1     (t)
+
+  Where:
+   S:     Module is Sticky, requires --force to unload or purge
+   m:     MPI implementations / Implémentations MPI
+   math:  Mathematical libraries / Bibliothèques mathématiques
+   t:     Tools for development / Outils de développement
+   H:                Hidden Module
+
+
+5. wget https://github.com/FreeFem/FreeFem-sources/archive/refs/tags/v4.13.tar.gz
+
+6. tar -xvf v4.13.tar.gz
+
+7. wget https://gitlab.com/petsc/petsc/-/archive/v3.19.2/petsc-v3.19.2.tar.gz
+
+8. tar -xvf petsc-v3.19.2.tar.gz
+
+9. export FF_DIR=${PWD}/FreeFem-sources-4.13
+10. export PETSC_DIR=${PWD}/petsc-v3.19.2
+11. export PETSC_ARCH=arch-FreeFem
+12. export PETSC_VAR=${PETSC_DIR}/${PETSC_ARCH}
+
+13. cd ${PETSC_DIR}
+
+14. ./configure --download-mumps --download-parmetis --download-metis --download-hypre --download-superlu --download-slepc --download-hpddm --download-ptscotch --download-suitesparse --download-scalapack --download-tetgen --download-mmg --download-parmmg --with-fortran-bindings=no --with-scalar-type=real --with-debugging=no
+
+15. make (Note add the PETSC DIR as specified after the configure step by PETSC)
+
+
+16. export PETSC_ARCH=arch-FreeFem-complex
+
+17. ./configure --with-mumps-dir=arch-FreeFem --with-parmetis-dir=arch-FreeFem --with-metis-dir=arch-FreeFem --with-superlu-dir=arch-FreeFem --download-slepc --download-hpddm --download-htool --with-ptscotch-dir=arch-FreeFem --with-suitesparse-dir=arch-FreeFem --with-scalapack-dir=arch-FreeFem --with-tetgen-dir=arch-FreeFem --with-fortran-bindings=no --with-scalar-type=complex --with-debugging=no
+
+18. make (Note add the PETSC DIR as specified after the configure step by PETSC)
+
+
+19. cd ${FF_DIR}
+
+20. autoreconf -i
+
+21. ./configure --without-hdf5 --with-petsc=${PETSC_VAR}/lib --with-petsc_complex=${PETSC_VAR}-complex/lib
+
+22. make -j4
+
+
+
+###############################################################################################################
+
+############################# NOTES  ##########################################################################
+
+
+
+
+Log files :
+
+Config file FreeFEM : /FreeFem-sources/config.log
+
+Config file PETSc : /FreeFem-sources/3rdparty/ff-petsc/petsc-versionnumber/configure.log
+
+Configuration parameter file for FreeFEM : /FreeFem-sources/config.param
+
+1. Test your installaton with the Southern Ontario code as per mbe_covid repository given in README file using /cluster/instructions_parallel.txt.
+
+2. Don't forget to add the FreeFEM preference File as given inside the repository before running the .edp files
+/cluster/instructions_parallel.txt.
+
+
+
+
+
+
+

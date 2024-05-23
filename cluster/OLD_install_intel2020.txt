@@ -1,0 +1,74 @@
+Installation of FreeFem in Remote Machine
+
+Tested - CEDAR and NIAGARA, BELUGA and GRAHAM (Compute Canada)
+
+
+
+1. module load StdEnv/2020  (Graham, Cedar have by default StdEnv/2020)
+    1.1 module load intelmpi
+
+Currently Loaded Modules:
+  1) CCconfig                 5) intel/2020.1.217    (t)
+  2) gentoo/2020     (S)      6) StdEnv/2020         (S)
+  3) gcccore/.9.3.0  (H)      7) ucx/1.8.0
+  4) imkl/2020.1.217 (math)   8) intelmpi/2019.7.217 (m)
+
+    1.2 For Niagara do
+
+    module load CCEnv
+    module load StdEnv/2020
+    module load intelmpi
+
+
+2. git clone -b v4.9 https://github.com/FreeFem/FreeFem-sources.git
+(Go to site and copy repository name as https://github.com/FreeFem/FreeFem-sources.git if error in above command)
+
+
+#####################################
+Note: Versions installed in machines are slightly different
+
+CEDAR:
+2. git clone -b v4.10 https://github.com/FreeFem/FreeFem-sources.git
+
+
+#####################################
+
+For BELUGA AND CEDAR
+#####################################
+
+change the first line of file "./FreeFem-sources/3rdparty/getall"
+as:
+"#!/bin/env perl"
+#####################################
+
+
+3. cd FreeFem-sources
+4. autoreconf -i
+5. ./configure CXX=icpc CC=icc FC=ifort F90=ifort F77=ifort --without-hdf5 --disable-yams --with-mkl --enable-mkl-mlt --prefix=$PWD/install
+6. cd 3rdparty/ff-petsc && make petsc-slepc
+7. cd - && ./reconfigure
+8. make
+9. make check
+
+
+Note that : some tests can fail while installation or some tests can get skipped. (< 5 tests).
+
+            Try running make check in examples/hpddm - more rigorous parallel examples with PETSc
+
+
+The configure parameters  --without-hdf5 --disable-yams are added to avoid errors which came up during installation and mayn’t be same for every installation.
+
+
+
+Log files :
+
+Config file FreeFEM : /home/name/location/FreeFem-sources/config.log
+
+Config file PETSc :/home/name/location/FreeFem-sources/3rdparty/ff-petsc/petsc-versionnumber/configure.log
+
+Configuration parameter file for FreeFEM : /home/name/location/intel_freefem/FreeFem-sources/config.param
+
+
+
+
+

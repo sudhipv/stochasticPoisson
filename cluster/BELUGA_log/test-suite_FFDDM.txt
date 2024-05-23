@@ -1,0 +1,1141 @@
+=================================================
+   FreeFEM 4.13: examples/ffddm/test-suite.log
+=================================================
+
+# TOTAL: 16
+# PASS:  7
+# SKIP:  4
+# XFAIL: 5
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+XFAIL: diffusion-2d-thirdlevelgeneo.edp
+=======================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './diffusion-2d-thirdlevelgeneo.edp' -ffddm_schwarz_method ras -ffddm_geneo_nu 20 -global 40 -ffddm_partitioner 0 -nsuper 2 -ffddm_geneo_super_nu 8 -ffddm_inexactCS_tol 1.e-2
+ The Identifier EigenValue does not exist 
+
+ Error line number 788, in file  macro: ffddmgeneosetup in ffddm_geneoCS.idp, before  token EigenValue
+
+  current line = 788 mpirank 0 / 4
+Compile error : 
+	line number :788, EigenValue
+error Compile error : 
+	line number :788, EigenValue
+ code = 1 mpirank: 0
+  current line = 788 mpirank 1 / 4
+  current line = 788 mpirank 3 / 4
+  current line = 788 mpirank 2 / 4
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[33884,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+XFAIL: diffusion-3d-minimal-ddm.edp
+===================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './diffusion-3d-minimal-ddm.edp' -raspart -ffddm_schwarz_method ras -ffddm_schwarz_coarse_correction BNN -ffddm_geneo_nu 10 -global 20
+ The Identifier EigenValue does not exist 
+
+ Error line number 788, in file  macro: ffddmgeneosetup in ffddm_geneoCS.idp, before  token EigenValue
+
+  current line = 788 mpirank 0 / 4
+Compile error : 
+	line number :788, EigenValue
+error Compile error : 
+	line number :788, EigenValue
+ code = 1 mpirank: 0
+  current line = 788 mpirank 1 / 4
+  current line = 788 mpirank 2 / 4
+  current line = 788 mpirank 3 / 4
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39932,1],2]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+PASS: diffusion-3d-minimal-direct.edp
+=====================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './diffusion-3d-minimal-direct.edp' -raspart -global 20
+[ Lap] Building decomposition from mesh of 48000 elements
+[ Lap] (paraddm) ndof = 9261
+[ Lap] timings - direct solver : 0.146005 s
+[Lap] timings - decomp and partition : 0.391761
+[Lap] timings - assembly and factorization local matrices : 0.0824543
+[Lap] timings - assembly and factorization coarse problem : 0
+[Lap] timings - GMRES : 0
+[Lap] timings - MV : 0
+[Lap] timings - PREC : 0
+[Lap] timings - COARSE SOLVE : 0
+[Lap] timings - total_sum : 0.620221
+[Lap] timings - total elapsed wall time : 0.239374
+
+XFAIL: diffusion-3d-simple.edp
+==============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './diffusion-3d-simple.edp' -raspart -ffddm_schwarz_method ras -ffddm_schwarz_coarse_correction BNN -ffddm_geneo_nu 10 -global 20
+ The Identifier EigenValue does not exist 
+
+ Error line number 788, in file  macro: ffddmgeneosetup in ffddm_geneoCS.idp, before  token EigenValue
+
+  current line = 788 mpirank 0 / 4
+Compile error : 
+	line number :788, EigenValue
+error Compile error : 
+	line number :788, EigenValue
+ code = 1 mpirank: 0
+  current line = 788 mpirank 2 / 4
+  current line = 788 mpirank 3 / 4
+  current line = 788 mpirank 1 / 4
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39770,1],1]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+PASS: Helmholtz-2d-HPDDM-BGMRES.edp
+===================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Helmholtz-2d-HPDDM-BGMRES.edp' -raspart -ffddm_schwarz_method oras -waven 20
+[Hmesh] Building decomposition from mesh of 4418 elements
+[HFE] (paraddm) ndof = 9025
+Pseudo-Block GMRES :
+=== PARDISO is running in In-Core mode, because iparam(60)=0 ====== PARDISO is running in In-Core mode, because iparam(60)=0 ====== PARDISO is running in In-Core mode, because iparam(60)=0 ====== PARDISO is running in In-Core mode, because iparam(60)=0 ===
+
+Percentage of computed non-zeros for LL^T factorization
+
+
+Percentage of computed non-zeros for LL^T factorization
+
+
+Percentage of computed non-zeros for LL^T factorization
+
+
+Percentage of computed non-zeros for LL^T factorization
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  19 %  20 %  21 %  22 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  38 %  40 %  42 %  43 %  44 %  45 %  46 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  62 %  66 %  67 %  68 %  69 %  70 %  71 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  84 %  86 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+0-based array is turned ON
+PARDISO double precision computation is turned ON
+METIS algorithm at reorder step is turned ON
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( starting phase is reordering, ending phase is factorization )
+================
+
+Times:
+======
+Time spent in calculations of symmetric matrix portrait (fulladj): 0.000120 s
+Time spent in reordering of the initial matrix (reorder)         : 0.006161 s
+Time spent in symbolic factorization (symbfct)                   : 0.001252 s
+Time spent in data preparations for factorization (parlist)      : 0.000078 s
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.007237 s
+Time spent in allocation of internal data structures (malloc)    : 0.005912 s
+Time spent in additional calculations                            : 0.000937 s
+Total time spent                                                 : 0.021697 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2494
+             number of non-zeros in A:      15211
+             number of non-zeros in A (%): 0.244548
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1286
+             size of largest supernode:               97
+             number of non-zeros in L:                70382
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              70383
+             gflop   for the numerical factorization: 0.012518
+
+             gflop/s for the numerical factorization: 1.729776
+
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  18 %  21 %  22 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  37 %  38 %  39 %  40 %  41 %  43 %  44 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  67 %  68 %  70 %  71 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  88 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+0-based array is turned ON
+PARDISO double precision computation is turned ON
+METIS algorithm at reorder step is turned ON
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( starting phase is reordering, ending phase is factorization )
+================
+
+Times:
+======
+Time spent in calculations of symmetric matrix portrait (fulladj): 0.000119 s
+Time spent in reordering of the initial matrix (reorder)         : 0.006193 s
+Time spent in symbolic factorization (symbfct)                   : 0.001097 s
+Time spent in data preparations for factorization (parlist)      : 0.000087 s
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.006598 s
+Time spent in allocation of internal data structures (malloc)    : 0.005938 s
+Time spent in additional calculations                            : 0.000953 s
+Total time spent                                                 : 0.020985 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2536
+             number of non-zeros in A:      15436
+             number of non-zeros in A (%): 0.240014
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1314
+             size of largest supernode:               87
+             number of non-zeros in L:                68461
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              68462
+             gflop   for the numerical factorization: 0.010951
+
+             gflop/s for the numerical factorization: 1.659717
+
+ 1 %  2 %  3 %  4 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  16 %  17 %  18 %  19 %  20 %  21 %  22 %  23 %  24 %  25 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  39 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  67 %  71 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  89 %  90 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+0-based array is turned ON
+PARDISO double precision computation is turned ON
+METIS algorithm at reorder step is turned ON
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( starting phase is reordering, ending phase is factorization )
+================
+
+Times:
+======
+Time spent in calculations of symmetric matrix portrait (fulladj): 0.000122 s
+Time spent in reordering of the initial matrix (reorder)         : 0.006649 s
+Time spent in symbolic factorization (symbfct)                   : 0.001101 s
+Time spent in data preparations for factorization (parlist)      : 0.000081 s
+Time spent in copying matrix to internal data structure (A to LU): 0.000001 s
+Time spent in factorization step (numfct)                        : 0.007567 s
+Time spent in allocation of internal data structures (malloc)    : 0.005464 s
+Time spent in additional calculations                            : 0.000958 s
+Total time spent                                                 : 0.021943 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2522
+             number of non-zeros in A:      15371
+             number of non-zeros in A (%): 0.241664
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1305
+             size of largest supernode:               83
+             number of non-zeros in L:                70834
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              70835
+             gflop   for the numerical factorization: 0.012898
+
+             gflop/s for the numerical factorization: 1.704469
+
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  18 %  19 %  21 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  38 %  39 %  40 %  41 %  43 %  44 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  66 %  67 %  68 %  70 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  88 %  89 %  90 %  91 %  93 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+0-based array is turned ON
+PARDISO double precision computation is turned ON
+METIS algorithm at reorder step is turned ON
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( starting phase is reordering, ending phase is factorization )
+================
+
+Times:
+======
+Time spent in calculations of symmetric matrix portrait (fulladj): 0.000127 s
+Time spent in reordering of the initial matrix (reorder)         : 0.006561 s
+Time spent in symbolic factorization (symbfct)                   : 0.001177 s
+Time spent in data preparations for factorization (parlist)      : 0.000083 s
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.009761 s
+Time spent in allocation of internal data structures (malloc)    : 0.005460 s
+Time spent in additional calculations                            : 0.001011 s
+Total time spent                                                 : 0.024180 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2719
+             number of non-zeros in A:      16546
+             number of non-zeros in A (%): 0.223807
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1408
+             size of largest supernode:               68
+             number of non-zeros in L:                71522
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              71523
+             gflop   for the numerical factorization: 0.011834
+
+             gflop/s for the numerical factorization: 1.212442
+
+GMRES:   1 1.079687e-01 1.083304e-01 9.966611e-01 < 1.000000e-06 (rhs #6)
+GMRES:   2 1.070885e-01 1.083304e-01 9.885360e-01 < 1.000000e-06 (rhs #6)
+GMRES:   3 1.060297e-01 1.083304e-01 9.787615e-01 < 1.000000e-06 (rhs #6)
+GMRES:   4 1.046179e-01 1.083304e-01 9.657293e-01 < 1.000000e-06 (rhs #6)
+GMRES:   5 1.040583e-01 1.083304e-01 9.605642e-01 < 1.000000e-06 (rhs #6)
+GMRES:   6 1.035992e-01 1.083304e-01 9.563256e-01 < 1.000000e-06 (rhs #6)
+GMRES:   7 1.033673e-01 1.083304e-01 9.541847e-01 < 1.000000e-06 (rhs #6)
+GMRES:   8 1.023175e-01 1.083304e-01 9.444944e-01 < 1.000000e-06 (rhs #7)
+GMRES:   9 1.008765e-01 1.083304e-01 9.311928e-01 < 1.000000e-06 (rhs #7)
+GMRES:  10 9.926768e-02 1.083304e-01 9.163414e-01 < 1.000000e-06 (rhs #6)
+GMRES:  11 9.900045e-02 1.083304e-01 9.138747e-01 < 1.000000e-06 (rhs #6)
+GMRES:  12 9.751272e-02 1.083304e-01 9.001414e-01 < 1.000000e-06 (rhs #1)
+GMRES:  13 9.620136e-02 1.083304e-01 8.880362e-01 < 1.000000e-06 (rhs #1)
+GMRES:  14 9.418353e-02 1.083304e-01 8.694096e-01 < 1.000000e-06 (rhs #6)
+GMRES:  15 9.142745e-02 1.083304e-01 8.439681e-01 < 1.000000e-06 (rhs #6)
+GMRES:  16 8.330508e-02 1.083304e-01 7.689904e-01 < 1.000000e-06 (rhs #6)
+GMRES:  17 7.465050e-02 1.083304e-01 6.890999e-01 < 1.000000e-06 (rhs #1)
+GMRES:  18 6.536055e-02 1.083304e-01 6.033442e-01 < 1.000000e-06 (rhs #5)
+GMRES:  19 5.550696e-02 1.083304e-01 5.123856e-01 < 1.000000e-06 (rhs #5)
+GMRES:  20 4.548852e-02 1.083304e-01 4.199052e-01 < 1.000000e-06 (rhs #5)
+GMRES:  21 3.945051e-02 1.083304e-01 3.641683e-01 < 1.000000e-06 (rhs #5)
+GMRES:  22 3.400641e-02 1.083304e-01 3.139137e-01 < 1.000000e-06 (rhs #5)
+GMRES:  23 3.065640e-02 1.083304e-01 2.829897e-01 < 1.000000e-06 (rhs #5)
+GMRES:  24 2.382930e-02 1.083304e-01 2.199687e-01 < 1.000000e-06 (rhs #6)
+GMRES:  25 1.978405e-02 1.083304e-01 1.826269e-01 < 1.000000e-06 (rhs #6)
+GMRES:  26 1.797388e-02 1.083304e-01 1.659172e-01 < 1.000000e-06 (rhs #6)
+GMRES:  27 1.596796e-02 1.083304e-01 1.474005e-01 < 1.000000e-06 (rhs #6)
+GMRES:  28 1.540959e-02 1.083304e-01 1.422461e-01 < 1.000000e-06 (rhs #6)
+GMRES:  29 1.490593e-02 1.083304e-01 1.375969e-01 < 1.000000e-06 (rhs #6)
+GMRES:  30 1.262216e-02 1.083304e-01 1.165153e-01 < 1.000000e-06 (rhs #7)
+GMRES:  31 1.110934e-02 1.083304e-01 1.025505e-01 < 1.000000e-06 (rhs #7)
+GMRES:  32 9.969084e-03 1.083304e-01 9.202476e-02 < 1.000000e-06 (rhs #1)
+GMRES:  33 8.517560e-03 1.083304e-01 7.862572e-02 < 1.000000e-06 (rhs #1)
+GMRES:  34 8.020069e-03 1.083304e-01 7.403338e-02 < 1.000000e-06 (rhs #7)
+GMRES:  35 7.344345e-03 1.083304e-01 6.779576e-02 < 1.000000e-06 (rhs #1)
+GMRES:  36 6.457295e-03 1.083304e-01 5.960739e-02 < 1.000000e-06 (rhs #7)
+GMRES:  37 4.921914e-03 1.083304e-01 4.543426e-02 < 1.000000e-06 (rhs #7)
+GMRES:  38 3.322389e-03 1.083304e-01 3.066903e-02 < 1.000000e-06 (rhs #6)
+GMRES:  39 2.843393e-03 1.083304e-01 2.624740e-02 < 1.000000e-06 (rhs #6)
+GMRES:  40 2.771152e-03 1.083304e-01 2.558055e-02 < 1.000000e-06 (rhs #6)
+GMRES:  41 2.567573e-03 1.083304e-01 2.370131e-02 < 1.000000e-06 (rhs #6)
+GMRES:  42 2.009523e-03 1.083304e-01 1.854994e-02 < 1.000000e-06 (rhs #6)
+GMRES:  43 1.073396e-03 1.083304e-01 9.908532e-03 < 1.000000e-06 (rhs #5)
+GMRES:  44 5.143672e-04 1.083304e-01 4.748131e-03 < 1.000000e-06 (rhs #5)
+GMRES:  45 2.035381e-04 1.083304e-01 1.878864e-03 < 1.000000e-06 (rhs #5)
+GMRES:  46 8.114076e-05 1.083304e-01 7.490116e-04 < 1.000000e-06 (rhs #5)
+GMRES:  47 2.782418e-05 1.083304e-01 2.568454e-04 < 1.000000e-06 (rhs #5)
+GMRES:  48 1.005287e-05 1.083304e-01 9.279819e-05 < 1.000000e-06 (rhs #5)
+GMRES:  49 3.468332e-06 1.083304e-01 3.201623e-05 < 1.000000e-06 (rhs #5)
+GMRES:  50 1.059590e-06 1.083304e-01 9.781092e-06 < 1.000000e-06 (rhs #5)
+GMRES:  51 3.959351e-07 1.083304e-01 3.654883e-06 < 1.000000e-06 (rhs #5)
+GMRES:  52 1.198511e-07 1.083304e-01 1.106348e-06 < 1.000000e-06 (rhs #5, 7 converged rhs)
+GMRES:  53 2.803474e-08 1.083304e-01 2.587891e-07 < 1.000000e-06 (rhs #1, 10 converged rhs)
+GMRES converges after 53 iterations
+
+Percentage of computed non-zeros for LL^T factorization
+ 1 %  2 %  3 %  4 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  16 %  17 %  18 %  19 %  20 %  21 %  22 %  23 %  24 %  25 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  39 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  67 %  71 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  89 %  90 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( factorization phase )
+================
+
+Times:
+======
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.003515 s
+Time spent in allocation of internal data structures (malloc)    : 0.000012 s
+Time spent in additional calculations                            : 0.000002 s
+Total time spent                                                 : 0.003529 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2522
+             number of non-zeros in A:      15371
+             number of non-zeros in A (%): 0.241664
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1305
+             size of largest supernode:               83
+             number of non-zeros in L:                70834
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              70835
+             gflop   for the numerical factorization: 0.012898
+
+             gflop/s for the numerical factorization: 3.669411
+
+
+Percentage of computed non-zeros for LL^T factorization
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  18 %  21 %  22 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  37 %  38 %  39 %  40 %  41 %  43 %  44 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  67 %  68 %  70 %  71 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  88 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( factorization phase )
+================
+
+Times:
+======
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.003775 s
+Time spent in allocation of internal data structures (malloc)    : 0.000012 s
+Time spent in additional calculations                            : 0.000000 s
+Total time spent                                                 : 0.003787 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2536
+             number of non-zeros in A:      15436
+             number of non-zeros in A (%): 0.240014
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1314
+             size of largest supernode:               87
+             number of non-zeros in L:                68461
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              68462
+             gflop   for the numerical factorization: 0.010951
+
+             gflop/s for the numerical factorization: 2.900967
+
+
+Percentage of computed non-zeros for LL^T factorization
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  18 %  19 %  21 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  38 %  39 %  40 %  41 %  43 %  44 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  61 %  62 %  63 %  64 %  65 %  66 %  67 %  68 %  70 %  72 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  83 %  84 %  85 %  86 %  87 %  88 %  89 %  90 %  91 %  93 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( factorization phase )
+================
+
+Times:
+======
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.003630 s
+Time spent in allocation of internal data structures (malloc)    : 0.000012 s
+Time spent in additional calculations                            : 0.000000 s
+Total time spent                                                 : 0.003642 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2719
+             number of non-zeros in A:      16546
+             number of non-zeros in A (%): 0.223807
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1408
+             size of largest supernode:               68
+             number of non-zeros in L:                71522
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              71523
+             gflop   for the numerical factorization: 0.011834
+
+             gflop/s for the numerical factorization: 3.260254
+
+[H] timings - decomp and partition : 0.0239707
+[H] timings - assembly and factorization local matrices : 0.0216272
+[H] timings - assembly and factorization coarse problem : 0
+[H] timings - GMRES : 0.61864
+[H] timings - MV : 0
+[H] timings - PREC : 0
+[H] timings - COARSE SOLVE : 0
+[H] timings - total_sum : 0.664238
+[H] timings - total elapsed wall time : 0.66597
+
+Block GMRES :
+
+Percentage of computed non-zeros for LL^T factorization
+ 1 %  2 %  3 %  4 %  5 %  6 %  7 %  8 %  9 %  10 %  11 %  12 %  13 %  14 %  15 %  16 %  17 %  19 %  20 %  21 %  22 %  23 %  24 %  25 %  26 %  27 %  28 %  29 %  30 %  31 %  32 %  33 %  34 %  35 %  36 %  37 %  38 %  40 %  42 %  43 %  44 %  45 %  46 %  47 %  48 %  49 %  50 %  51 %  52 %  53 %  54 %  55 %  56 %  57 %  58 %  59 %  60 %  62 %  66 %  67 %  68 %  69 %  70 %  71 %  73 %  74 %  75 %  76 %  77 %  78 %  79 %  80 %  81 %  82 %  84 %  86 %  100 % 
+
+=== PARDISO: solving a complex symmetric system ===
+Single-level factorization algorithm is turned ON
+
+
+Summary: ( factorization phase )
+================
+
+Times:
+======
+Time spent in copying matrix to internal data structure (A to LU): 0.000000 s
+Time spent in factorization step (numfct)                        : 0.003918 s
+Time spent in allocation of internal data structures (malloc)    : 0.000012 s
+Time spent in additional calculations                            : 0.000000 s
+Total time spent                                                 : 0.003930 s
+
+Statistics:
+===========
+Parallel Direct Factorization is running on 1 OpenMP
+
+< Linear system Ax = b >
+             number of equations:           2494
+             number of non-zeros in A:      15211
+             number of non-zeros in A (%): 0.244548
+
+             number of right-hand sides:    1
+
+< Factors L and U >
+             number of columns for each panel: 128
+             number of independent subgraphs:  0
+< Preprocessing with state of the art partitioning metis>
+             number of supernodes:                    1286
+             size of largest supernode:               97
+             number of non-zeros in L:                70382
+             number of non-zeros in U:                1
+             number of non-zeros in L+U:              70383
+             gflop   for the numerical factorization: 0.012518
+
+             gflop/s for the numerical factorization: 3.195132
+
+BGMRES diag(R), QR = block residual: (1.083304e-01,0.000000e+00)	...	(1.858653e-02,0.000000e+00)
+BGMRES:   1 1.067398e-01 1.083304e-01 9.853164e-01 < 1.000000e-06 (rhs #10)
+BGMRES:   2 1.027075e-01 1.083304e-01 9.480941e-01 < 1.000000e-06 (rhs #9)
+BGMRES:   3 9.406673e-02 1.083304e-01 8.683314e-01 < 1.000000e-06 (rhs #9)
+BGMRES:   4 7.885897e-02 1.083304e-01 7.279483e-01 < 1.000000e-06 (rhs #6)
+BGMRES:   5 6.639821e-02 1.083304e-01 6.129229e-01 < 1.000000e-06 (rhs #6)
+BGMRES:   6 5.454010e-02 1.083304e-01 5.034605e-01 < 1.000000e-06 (rhs #7)
+BGMRES:   7 2.489836e-02 1.083304e-01 2.298372e-01 < 1.000000e-06 (rhs #7)
+BGMRES:   8 1.069776e-02 1.083304e-01 9.875119e-02 < 1.000000e-06 (rhs #7)
+BGMRES:   9 2.428137e-03 1.083304e-01 2.241417e-02 < 1.000000e-06 (rhs #7)
+BGMRES:  10 2.564826e-04 1.083304e-01 2.367595e-03 < 1.000000e-06 (rhs #7)
+BGMRES:  11 2.980551e-05 1.083304e-01 2.751351e-04 < 1.000000e-06 (rhs #7)
+BGMRES:  12 2.769107e-06 1.083304e-01 2.556167e-05 < 1.000000e-06 (rhs #9)
+BGMRES:  13 2.033507e-07 1.083304e-01 1.877133e-06 < 1.000000e-06 (rhs #7)
+BGMRES:  14 1.468714e-08 1.083304e-01 1.355772e-07 < 1.000000e-06 (rhs #7)
+BGMRES converges after 14 iterations
+[H] timings - decomp and partition : 0.0239707
+[H] timings - assembly and factorization local matrices : 0.0216272
+[H] timings - assembly and factorization coarse problem : 0
+[H] timings - GMRES : 0.227562
+[H] timings - MV : 0
+[H] timings - PREC : 0
+[H] timings - COARSE SOLVE : 0
+[H] timings - total_sum : 0.27316
+[H] timings - total elapsed wall time : 0.894184
+
+XFAIL: Helmholtz-2d-simple.edp
+==============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Helmholtz-2d-simple.edp' -raspart -ffddm_schwarz_method oras -waven 20
+  current line = 974 mpirank 1 / 4
+  current line = 974 mpirank 3 / 4
+ The Identifier complexEigenValue does not exist 
+
+ Error line number 974, in file  macro: ffddmdtnsetup in ffddm_geneoCS.idp, before  token complexEigenValue
+
+  current line = 974 mpirank 0 / 4
+Compile error : 
+	line number :974, complexEigenValue
+error Compile error : 
+	line number :974, complexEigenValue
+ code = 1 mpirank: 0
+  current line = 974 mpirank 2 / 4
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39592,1],1]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+PASS: Helmholtz-3d-simple.edp
+=============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Helmholtz-3d-simple.edp' -raspart -ffddm_schwarz_method oras -waven 6
+[H] Building decomposition from mesh of 4374 elements
+[H] (paraddm) ndof = 6861
+ORAS :
+[H] It: 1 Residual = 0.000934573 Rel res = 0.853273
+[H] It: 2 Residual = 0.000335435 Rel res = 0.306255
+[H] It: 3 Residual = 6.6098e-05 Rel res = 0.060348
+[H] It: 4 Residual = 1.42085e-05 Rel res = 0.0129724
+[H] It: 5 Residual = 3.39152e-06 Rel res = 0.00309648
+[H] It: 6 Residual = 6.89649e-07 Rel res = 0.000629655
+[H] It: 7 Residual = 1.48314e-07 Rel res = 0.000135412
+[H] It: 8 Residual = 3.40164e-08 Rel res = 3.10572e-05
+[H] It: 9 Residual = 8.82814e-09 Rel res = 8.06016e-06
+[H] It: 10 Residual = 1.73677e-09 Rel res = 1.58568e-06
+[H] It: 11 Residual = 3.54202e-10 Rel res = 3.23389e-07
+[H] GMRES has converged in 11 iterations 
+[H] The relative residual is 3.23389e-07
+[H] timings - decomp and partition : 0.0493734
+[H] timings - assembly and factorization local matrices : 0.138235
+[H] timings - assembly and factorization coarse problem : 0
+[H] timings - GMRES : 0.0418973
+[H] timings - MV : 0.00385512
+[H] timings - PREC : 0.0160965
+[H] timings - COARSE SOLVE : 0
+[H] timings - total_sum : 0.229505
+[H] timings - total elapsed wall time : 0.189431
+
+ORAS TWO-LEVEL :
+[H] Coarse space dimension: 343
+[H] timings - building E : 0.1021 s
+[H] It: 1 Residual = 0.000289291 Rel res = 0.264125
+[H] It: 2 Residual = 4.37004e-05 Rel res = 0.0398988
+[H] It: 3 Residual = 7.10307e-06 Rel res = 0.00648516
+[H] It: 4 Residual = 1.35594e-06 Rel res = 0.00123798
+[H] It: 5 Residual = 1.68126e-07 Rel res = 0.0001535
+[H] It: 6 Residual = 2.62909e-08 Rel res = 2.40038e-05
+[H] It: 7 Residual = 3.35335e-09 Rel res = 3.06163e-06
+[H] It: 8 Residual = 4.94508e-10 Rel res = 4.5149e-07
+[H] GMRES has converged in 8 iterations 
+[H] The relative residual is 4.5149e-07
+[H] timings - decomp and partition : 0.0493734
+[H] timings - assembly and factorization local matrices : 0.138235
+[H] timings - assembly and factorization coarse problem : 0.1021
+[H] timings - GMRES : 0.0387055
+[H] timings - MV : 0.00285597
+[H] timings - PREC : 0.018891
+[H] timings - COARSE SOLVE : 0.00191859
+[H] timings - total_sum : 0.328414
+[H] timings - total elapsed wall time : 0.336707
+
+PASS: Maxwell-3d-simple.edp
+===========================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Maxwell-3d-simple.edp' -raspart -ffddm_schwarz_method oras -global 10
+[M] Building decomposition from mesh of 6000 elements
+[M] (paraddm) ndof = 7930
+ORAS :
+[M] It: 1 Residual = 0.00777903 Rel res = 0.630102
+[M] It: 2 Residual = 0.00286424 Rel res = 0.232003
+[M] It: 3 Residual = 0.000729127 Rel res = 0.0590593
+[M] It: 4 Residual = 0.000219771 Rel res = 0.0178015
+[M] It: 5 Residual = 7.19986e-05 Rel res = 0.00583189
+[M] It: 6 Residual = 2.61495e-05 Rel res = 0.00211811
+[M] It: 7 Residual = 8.61405e-06 Rel res = 0.000697738
+[M] It: 8 Residual = 2.78265e-06 Rel res = 0.000225395
+[M] It: 9 Residual = 9.13456e-07 Rel res = 7.39899e-05
+[M] It: 10 Residual = 2.78918e-07 Rel res = 2.25923e-05
+[M] It: 11 Residual = 9.00442e-08 Rel res = 7.29358e-06
+[M] It: 12 Residual = 2.96694e-08 Rel res = 2.40323e-06
+[M] It: 13 Residual = 9.46277e-09 Rel res = 7.66485e-07
+[M] GMRES has converged in 13 iterations 
+[M] The relative residual is 7.66485e-07
+[M] timings - decomp and partition : 0.0627892
+[M] timings - assembly and factorization local matrices : 0.20578
+[M] timings - assembly and factorization coarse problem : 0
+[M] timings - GMRES : 0.0506472
+[M] timings - MV : 0.00337554
+[M] timings - PREC : 0.0208838
+[M] timings - COARSE SOLVE : 0
+[M] timings - total_sum : 0.319216
+[M] timings - total elapsed wall time : 0.269433
+
+ORAS TWO-LEVEL :
+[M] Coarse space dimension: 279
+[M] timings - building E : 0.155991 s
+[M] It: 1 Residual = 0.00647737 Rel res = 0.524667
+[M] It: 2 Residual = 0.00249901 Rel res = 0.20242
+[M] It: 3 Residual = 0.000817839 Rel res = 0.066245
+[M] It: 4 Residual = 0.000321475 Rel res = 0.0260395
+[M] It: 5 Residual = 0.000141312 Rel res = 0.0114463
+[M] It: 6 Residual = 6.40756e-05 Rel res = 0.00519012
+[M] It: 7 Residual = 2.77267e-05 Rel res = 0.00224586
+[M] It: 8 Residual = 1.15776e-05 Rel res = 0.000937783
+[M] It: 9 Residual = 4.7993e-06 Rel res = 0.000388743
+[M] It: 10 Residual = 1.85656e-06 Rel res = 0.000150381
+[M] It: 11 Residual = 7.50372e-07 Rel res = 6.07801e-05
+[M] It: 12 Residual = 2.81436e-07 Rel res = 2.27963e-05
+[M] It: 13 Residual = 1.08173e-07 Rel res = 8.76202e-06
+[M] It: 14 Residual = 3.84174e-08 Rel res = 3.11181e-06
+[M] It: 15 Residual = 1.3643e-08 Rel res = 1.10508e-06
+[M] It: 16 Residual = 5.15686e-09 Rel res = 4.17705e-07
+[M] GMRES has converged in 16 iterations 
+[M] The relative residual is 4.17705e-07
+[M] timings - decomp and partition : 0.0627892
+[M] timings - assembly and factorization local matrices : 0.20578
+[M] timings - assembly and factorization coarse problem : 0.155991
+[M] timings - GMRES : 0.0772765
+[M] timings - MV : 0.00426637
+[M] timings - PREC : 0.0413579
+[M] timings - COARSE SOLVE : 0.00438229
+[M] timings - total_sum : 0.501837
+[M] timings - total elapsed wall time : 0.515248
+
+PASS: natural_convection_3D_obstacle.edp
+========================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './natural_convection_3D_obstacle.edp' -raspart -ffddm_schwarz_method oras -Ra 1e4 -global 4 -CSsplit 2
+[NC] Building decomposition from mesh of 384 elements
+[NCAug] (paraddm) ndof = 2437
+[NC] (paraddm) ndof = 2437
+[NC] Coarse space dimension: 429
+---------------  continuation coef*Ra=1250
+[NC] timings - building E : 0.0134957 s
+GMRES:   1 2.117503e-03 5.612486e+00 3.772843e-04 < 1.000000e-08
+GMRES:   2 5.575817e-04 5.612486e+00 9.934665e-05 < 1.000000e-08
+GMRES:   3 6.317427e-05 5.612486e+00 1.125602e-05 < 1.000000e-08
+GMRES:   4 1.113187e-05 5.612486e+00 1.983412e-06 < 1.000000e-08
+GMRES:   5 1.657308e-06 5.612486e+00 2.952895e-07 < 1.000000e-08
+GMRES:   6 3.548030e-07 5.612486e+00 6.321673e-08 < 1.000000e-08
+GMRES:   7 4.632025e-08 5.612486e+00 8.253071e-09 < 1.000000e-08
+GMRES converges after 7 iterations
+niter = 0 err =  0.5
+[NC] timings - building E : 0.00816265 s
+GMRES:   1 4.780688e-04 5.612487e+00 8.517948e-05 < 1.000000e-08
+GMRES:   2 8.566166e-05 5.612487e+00 1.526269e-05 < 1.000000e-08
+GMRES:   3 1.322682e-05 5.612487e+00 2.356677e-06 < 1.000000e-08
+GMRES:   4 1.752514e-06 5.612487e+00 3.122527e-07 < 1.000000e-08
+GMRES:   5 2.268485e-07 5.612487e+00 4.041852e-08 < 1.000000e-08
+GMRES:   6 3.945289e-08 5.612487e+00 7.029484e-09 < 1.000000e-08
+GMRES converges after 6 iterations
+niter = 1 err =  0.0264248
+[NC] timings - building E : 0.00712649 s
+GMRES:   1 7.526479e-06 5.612487e+00 1.341024e-06 < 1.000000e-08
+GMRES:   2 1.334556e-06 5.612487e+00 2.377833e-07 < 1.000000e-08
+GMRES:   3 1.753423e-07 5.612487e+00 3.124146e-08 < 1.000000e-08
+GMRES:   4 2.354416e-08 5.612487e+00 4.194960e-09 < 1.000000e-08
+GMRES converges after 4 iterations
+niter = 2 err =  0.000397317
+---------------  continuation coef*Ra=10000
+[NC] timings - building E : 0.0076333 s
+GMRES:   1 1.713974e-02 5.612487e+00 3.053859e-03 < 1.000000e-08
+GMRES:   2 5.069810e-03 5.612487e+00 9.033089e-04 < 1.000000e-08
+GMRES:   3 1.666099e-03 5.612487e+00 2.968558e-04 < 1.000000e-08
+GMRES:   4 5.294002e-04 5.612487e+00 9.432542e-05 < 1.000000e-08
+GMRES:   5 1.377548e-04 5.612487e+00 2.454434e-05 < 1.000000e-08
+GMRES:   6 3.009500e-05 5.612487e+00 5.362151e-06 < 1.000000e-08
+GMRES:   7 6.512844e-06 5.612487e+00 1.160420e-06 < 1.000000e-08
+GMRES:   8 1.530700e-06 5.612487e+00 2.727310e-07 < 1.000000e-08
+GMRES:   9 3.688127e-07 5.612487e+00 6.571289e-08 < 1.000000e-08
+GMRES:  10 5.156825e-08 5.612487e+00 9.188128e-09 < 1.000000e-08
+GMRES converges after 10 iterations
+niter = 0 err =  0.667422
+[NC] timings - building E : 0.00782244 s
+GMRES:   1 1.213725e-02 5.612607e+00 2.162497e-03 < 1.000000e-08
+GMRES:   2 2.229146e-03 5.612607e+00 3.971676e-04 < 1.000000e-08
+GMRES:   3 4.044377e-04 5.612607e+00 7.205880e-05 < 1.000000e-08
+GMRES:   4 1.688569e-04 5.612607e+00 3.008528e-05 < 1.000000e-08
+GMRES:   5 3.968709e-05 5.612607e+00 7.071061e-06 < 1.000000e-08
+GMRES:   6 1.127305e-05 5.612607e+00 2.008523e-06 < 1.000000e-08
+GMRES:   7 2.711127e-06 5.612607e+00 4.830423e-07 < 1.000000e-08
+GMRES:   8 7.789769e-07 5.612607e+00 1.387906e-07 < 1.000000e-08
+GMRES:   9 2.000166e-07 5.612607e+00 3.563701e-08 < 1.000000e-08
+GMRES:  10 3.872625e-08 5.612607e+00 6.899868e-09 < 1.000000e-08
+GMRES converges after 10 iterations
+niter = 1 err =  0.347818
+[NC] timings - building E : 0.00696145 s
+GMRES:   1 2.382906e-03 5.612517e+00 4.245699e-04 < 1.000000e-08
+GMRES:   2 5.074712e-04 5.612517e+00 9.041776e-05 < 1.000000e-08
+GMRES:   3 8.320900e-05 5.612517e+00 1.482561e-05 < 1.000000e-08
+GMRES:   4 1.903589e-05 5.612517e+00 3.391685e-06 < 1.000000e-08
+GMRES:   5 6.606194e-06 5.612517e+00 1.177046e-06 < 1.000000e-08
+GMRES:   6 1.152277e-06 5.612517e+00 2.053048e-07 < 1.000000e-08
+GMRES:   7 4.172787e-07 5.612517e+00 7.434786e-08 < 1.000000e-08
+GMRES:   8 1.704870e-07 5.612517e+00 3.037621e-08 < 1.000000e-08
+GMRES:   9 2.092848e-08 5.612517e+00 3.728894e-09 < 1.000000e-08
+GMRES converges after 9 iterations
+niter = 2 err =  0.0519562
+[NC] timings - building E : 0.00712868 s
+GMRES:   1 7.964858e-05 5.612510e+00 1.419126e-05 < 1.000000e-08
+GMRES:   2 4.428120e-05 5.612510e+00 7.889731e-06 < 1.000000e-08
+GMRES:   3 5.423054e-06 5.612510e+00 9.662439e-07 < 1.000000e-08
+GMRES:   4 1.266520e-06 5.612510e+00 2.256602e-07 < 1.000000e-08
+GMRES:   5 2.732154e-07 5.612510e+00 4.867971e-08 < 1.000000e-08
+GMRES:   6 7.360737e-08 5.612510e+00 1.311488e-08 < 1.000000e-08
+GMRES:   7 2.354149e-08 5.612510e+00 4.194467e-09 < 1.000000e-08
+GMRES converges after 7 iterations
+niter = 3 err =  0.00153789
+[NC] timings - building E : 0.0074455 s
+GMRES:   1 1.061809e-07 5.612510e+00 1.891860e-08 < 1.000000e-08
+GMRES:   2 4.430642e-08 5.612510e+00 7.894227e-09 < 1.000000e-08
+GMRES converges after 2 iterations
+niter = 4 err =  3.89066e-06
+[NC] timings - decomp and partition : 0.0107638
+[NC] timings - assembly and factorization local matrices : 3.23761
+[NC] timings - assembly and factorization coarse problem : 0.0657762
+[NC] timings - GMRES : 0.187578
+[NC] timings - MV : 0.0333821
+[NC] timings - PREC : 0.103206
+[NC] timings - COARSE SOLVE : 0.0139982
+[NC] timings - total_sum : 3.50173
+[NC] timings - total elapsed wall time : 4.42564
+ ┌------------------------┐
+ │ HPDDM options used:    │
+ │  gmres_restart: 200    │
+ │  max_it: 200           │
+ │  orthogonalization: 1  │
+ │  tol: 1.0e-08          │
+ │  variant: 1            │
+ │  verbosity: 10         │
+ └------------------------┘
+
+PASS: natural_convection.edp
+============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './natural_convection.edp' -raspart -ffddm_schwarz_method oras -Ra 1e6 -global 20
+[NCmesh] Building decomposition from mesh of 800 elements
+[NCFEAug] (paraddm) ndof = 4244
+[NCFE] (paraddm) ndof = 4244
+[NC] Coarse space dimension: 314
+---------------  continuation coef*Ra=1953.12
+[NCmesh] timings - building E : 0.00547066 s
+GMRES converges after 8 iterations
+niter = 0 err =  0.5
+[NCmesh] timings - building E : 0.00350997 s
+GMRES converges after 7 iterations
+niter = 1 err =  0.122614
+[NCmesh] timings - building E : 0.00345299 s
+GMRES converges after 5 iterations
+niter = 2 err =  0.00676688
+---------------  continuation coef*Ra=15625
+[NCmesh] timings - building E : 0.00334022 s
+GMRES converges after 9 iterations
+niter = 0 err =  0.511427
+[NCmesh] timings - building E : 0.00341795 s
+GMRES converges after 8 iterations
+niter = 1 err =  0.288633
+[NCmesh] timings - building E : 0.00340476 s
+GMRES converges after 8 iterations
+niter = 2 err =  0.0349901
+[NCmesh] timings - building E : 0.00343801 s
+GMRES converges after 6 iterations
+niter = 3 err =  0.0016195
+---------------  continuation coef*Ra=52734.4
+[NCmesh] timings - building E : 0.00351148 s
+GMRES converges after 9 iterations
+niter = 0 err =  0.218521
+[NCmesh] timings - building E : 0.00359196 s
+GMRES converges after 8 iterations
+niter = 1 err =  0.0812094
+[NCmesh] timings - building E : 0.0033686 s
+GMRES converges after 7 iterations
+niter = 2 err =  0.0026748
+---------------  continuation coef*Ra=125000
+[NCmesh] timings - building E : 0.00340421 s
+GMRES converges after 11 iterations
+niter = 0 err =  0.165392
+[NCmesh] timings - building E : 0.00338725 s
+GMRES converges after 9 iterations
+niter = 1 err =  0.0488392
+[NCmesh] timings - building E : 0.00340274 s
+GMRES converges after 7 iterations
+niter = 2 err =  0.00118667
+---------------  continuation coef*Ra=244141
+[NCmesh] timings - building E : 0.00354849 s
+GMRES converges after 12 iterations
+niter = 0 err =  0.116285
+[NCmesh] timings - building E : 0.0035339 s
+GMRES converges after 10 iterations
+niter = 1 err =  0.0327286
+[NCmesh] timings - building E : 0.00334196 s
+GMRES converges after 8 iterations
+niter = 2 err =  0.000676025
+---------------  continuation coef*Ra=421875
+[NCmesh] timings - building E : 0.00345655 s
+GMRES converges after 13 iterations
+niter = 0 err =  0.100994
+[NCmesh] timings - building E : 0.00371387 s
+GMRES converges after 11 iterations
+niter = 1 err =  0.0216789
+[NCmesh] timings - building E : 0.0034395 s
+GMRES converges after 10 iterations
+niter = 2 err =  0.000462168
+---------------  continuation coef*Ra=669922
+[NCmesh] timings - building E : 0.00353076 s
+GMRES converges after 15 iterations
+niter = 0 err =  0.0873646
+[NCmesh] timings - building E : 0.00337223 s
+GMRES converges after 14 iterations
+niter = 1 err =  0.0145219
+[NCmesh] timings - building E : 0.00354742 s
+GMRES converges after 12 iterations
+niter = 2 err =  0.000360561
+---------------  continuation coef*Ra=1e+06
+[NCmesh] timings - building E : 0.00360227 s
+GMRES converges after 19 iterations
+niter = 0 err =  0.0765771
+[NCmesh] timings - building E : 0.00341185 s
+GMRES converges after 17 iterations
+niter = 1 err =  0.011531
+[NCmesh] timings - building E : 0.00353333 s
+GMRES converges after 15 iterations
+niter = 2 err =  0.000299105
+[NCmesh] timings - building E : 0.00355335 s
+GMRES converges after 2 iterations
+niter = 3 err =  5.21481e-07
+[NC] timings - decomp and partition : 0.00701361
+[NC] timings - assembly and factorization local matrices : 1.18027
+[NC] timings - assembly and factorization coarse problem : 0.0922863
+[NC] timings - GMRES : 0.570955
+[NC] timings - MV : 0.063809
+[NC] timings - PREC : 0.344212
+[NC] timings - COARSE SOLVE : 0.057367
+[NC] timings - total_sum : 1.85053
+[NC] timings - total elapsed wall time : 2.04392
+
+PASS: Richards-2d.edp
+=====================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Richards-2d.edp' -ffddm_disable_plots -nt 20
+[R] Building decomposition from mesh of 964 elements
+[RAug] (paraddm) ndof = 524
+[R] (paraddm) ndof = 523
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 7.29885e-07
+[R] GMRES has converged in 1 iterations 
+[R] The relative residual is 3.49242e-07
+[R] GMRES has converged in 1 iterations 
+[R] The relative residual is 1.68773e-07
+[R] GMRES has converged in 1 iterations 
+[R] The relative residual is 3.222e-07
+[R] GMRES has converged in 1 iterations 
+[R] The relative residual is 1.46766e-07
+[R] GMRES has converged in 1 iterations 
+[R] The relative residual is 6.75617e-08
+[R] Building decomposition from mesh of 933 elements
+[RAug] (paraddm) ndof = 507
+[R] (paraddm) ndof = 507
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 2.25112e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 5.19186e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 8.73935e-09
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 6.35375e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 1.16679e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 2.19643e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 1.5596e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 2.28205e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 4.13595e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 2.54119e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 3.90762e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 6.40805e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 3.77942e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 5.90354e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 8.18397e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 5.30977e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 8.01163e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 8.40904e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 7.23271e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 9.97972e-07
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 6.36392e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 9.72088e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 1.94964e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 3.54622e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 1.29914e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 2.31757e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 7.99149e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 1.7246e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 2.48926e-08
+[R] GMRES has converged in 2 iterations 
+[R] The relative residual is 1.8026e-07
+[R] Building decomposition from mesh of 928 elements
+[RAug] (paraddm) ndof = 506
+[R] (paraddm) ndof = 506
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 5.17031e-09
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.7013e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 9.86323e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 6.98528e-09
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.6987e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 8.75662e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 9.13495e-09
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.5678e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.47449e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 1.16683e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.37121e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 4.3295e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 1.45541e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 6.13467e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 3.61368e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 1.77451e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 5.87244e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 5.02221e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 2.11806e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 5.59556e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 7.2242e-08
+[R] GMRES has converged in 4 iterations 
+[R] The relative residual is 2.47852e-08
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 5.31399e-07
+[R] GMRES has converged in 3 iterations 
+[R] The relative residual is 9.43994e-08
+[R] timings - decomp and partition : 0.0200461
+[R] timings - assembly and factorization local matrices : 0.26075
+[R] timings - assembly and factorization coarse problem : 0
+[R] timings - GMRES : 0.216455
+[R] timings - MV : 0.0195193
+[R] timings - PREC : 0.0529334
+[R] timings - COARSE SOLVE : 0
+[R] timings - total_sum : 0.497251
+[R] timings - total elapsed wall time : 0.662356
+
+XFAIL: heat-torus-3d-surf.edp
+=============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './heat-torus-3d-surf.edp' -ffddm_schwarz_method ras -ffddm_geneo_nu 10 -global 5
+  current line = 788 mpirank 3 / 4
+ The Identifier EigenValue does not exist 
+
+ Error line number 788, in file  macro: ffddmgeneosetup in ffddm_geneoCS.idp, before  token EigenValue
+
+  current line = 788 mpirank 0 / 4
+Compile error : 
+	line number :788, EigenValue
+error Compile error : 
+	line number :788, EigenValue
+ code = 1 mpirank: 0
+  current line = 788 mpirank 2 / 4
+  current line = 788 mpirank 1 / 4
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpiexec detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[40033,1],2]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+SKIP: Helmholtz_Cobracavity_BEM.edp
+===================================
+
+SKIP ../../src/mpi/ff-mpirun -np 4 -nw ./Helmholtz_Cobracavity_BEM.edp
+
+SKIP: Helmholtz_circle_BEM.edp
+==============================
+
+SKIP ../../src/mpi/ff-mpirun -np 4 -nw ./Helmholtz_circle_BEM.edp
+
+SKIP: Helmholtz-2d-FEM-BEM-coupling.edp
+=======================================
+
+SKIP ../../src/mpi/ff-mpirun -np 4 -nw ./Helmholtz-2d-FEM-BEM-coupling.edp
+
+SKIP: Helmholtz-2d-interfaceBCs-comp.edp
+========================================
+
+SKIP ../../src/mpi/ff-mpirun -np 4 -nw ./Helmholtz-2d-interfaceBCs-comp.edp
+

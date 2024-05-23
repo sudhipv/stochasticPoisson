@@ -1,0 +1,1218 @@
+===============================================
+   FreeFEM 4.13: examples/mpi/test-suite.log
+===============================================
+
+# TOTAL: 24
+# PASS:  23
+# SKIP:  1
+# XFAIL: 0
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+
+.. contents:: :depth: 2
+
+PASS: cmaes-mpi-VarIneq.edp
+===========================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './cmaes-mpi-VarIneq.edp'
+(7,15)-CMA-ES(mu_eff=4.5), Ver="3.11.00.beta", dimension=50, diagonalIterations=0, randomSeed=-1627095536 (Mon Dec  4 12:44:40 2023)
+Stop : MaxFunEvals: conducted function evaluations 10005 >= 10000
+
+
+PASS: essai.edp
+===============
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './essai.edp'
+ rank = 2  size 4
+ rank = 2  size 4
+ l == 102 broadcast l from 0   mpirank = 2
+ l == 100  mpirank =2
+ mpirank = 2 A =  
+ 4
+ mpiWait 0 2
+ all2all 2 :  8 9 10 11  -> 2 6 10 14 
+ all2all 2 0.000307839s :  2 aa = 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+2 bb = 10 4	
+	   2   2   2   2
+	 102 102 102 102
+	 202 202 202 202
+	 302 302 302 302
+	 402 402 402 402
+	 502 502 502 502
+	 602 602 602 602
+	 702 702 702 702
+	 802 802 802 802
+	 902 902 902 902
+	
+times: compile 0.006296s, execution 0.001341s,  mpirank:2
+ CodeAlloc : nb ptr  4625,  size :558192 mpirank: 2
+ rank = 3  size 4
+ rank = 3  size 4
+ l == 103 broadcast l from 0   mpirank = 3
+ l == 100  mpirank =3
+ mpirank = 3 A =  
+ 4
+ mpiWait 0 3
+ all2all 3 :  12 13 14 15  -> 3 7 11 15 
+ all2all 3 0.000304305s :  3 aa = 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+3 bb = 10 4	
+	   3   3   3   3
+	 103 103 103 103
+	 203 203 203 203
+	 303 303 303 303
+	 403 403 403 403
+	 503 503 503 503
+	 603 603 603 603
+	 703 703 703 703
+	 803 803 803 803
+	 903 903 903 903
+	
+times: compile 0.006294s, execution 0.001487s,  mpirank:3
+ CodeAlloc : nb ptr  4625,  size :558192 mpirank: 3
+ rank = 1  size 4
+ rank = 1  size 4
+ recived 123456
+ l == 101 broadcast l from 0   mpirank = 1
+ l == 100  mpirank =1
+ mpirank = 1 A =  
+ 13
+ A= #  HashMatrix Matrix (COO) 0x25881e0
+#    n       m        nnz     half     fortran   state  
+3 2 4 0 0 0 0 
+         0         0 (2,2)
+         0         1 (0,2)
+         1         1 (4,-2)
+         2         1 (4,-2)
+
+ mpiWait 0 1
+ all2all 1 :  4 5 6 7  -> 1 5 9 13 
+ AllGather 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+ all2all 1 0.000301422s :  1 aa = 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+1 bb = 10 4	
+	   1   1   1   1
+	 101 101 101 101
+	 201 201 201 201
+	 301 301 301 301
+	 401 401 401 401
+	 501 501 501 501
+	 601 601 601 601
+	 701 701 701 701
+	 801 801 801 801
+	 901 901 901 901
+	
+times: compile 0.006662s, execution 0.001478s,  mpirank:1
+ CodeAlloc : nb ptr  4625,  size :558192 mpirank: 1
+ rank = 0  size 4
+ rank = 0  size 4
+0 send to 1 
+ l == 100 broadcast l from 0   mpirank = 0
+ l == 100  mpirank =0
+ mpirank = 0 A =  
+ **** #  HashMatrix Matrix (COO) 0x3594600
+#    n       m        nnz     half     fortran   state  
+3 2 4 0 0 0 0 
+         0         0 (2,2)
+         0         1 (0,2)
+         1         1 (4,-2)
+         2         1 (4,-2)
+
+ 4
+ B3= #  HashMatrix Matrix (COO) 0x35e5010
+#    n       m        nnz     half     fortran   state  
+3 2 4 0 0 0 0 
+         0         0 (2,2)
+         0         1 (0,2)
+         1         1 (4,-2)
+         2         1 (4,-2)
+
+ --- in ++ 4
+ --- out ++ 4
+0  mpiWaitAny 4	
+	 12	 13	 14	 15	
+3  mpiWaitAny 4	
+	 12	 13	 14	 15	
+1  mpiWaitAny 4	
+	  8	  9	 10	 11	
+2  mpiWaitAny 4	
+	  8	  9	 10	 11	
+ mpiWait 0 0
+ case 0   12
+ case 1   4
+ case 2   8
+ case 3   0
+ all2all 0 :  0 1 2 3  -> 0 4 8 12 
+ Gather 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+ all2all 0 0.000307737s :  0 aa = 10 4	
+	   0   1   2   3
+	 100 101 102 103
+	 200 201 202 203
+	 300 301 302 303
+	 400 401 402 403
+	 500 501 502 503
+	 600 601 602 603
+	 700 701 702 703
+	 800 801 802 803
+	 900 901 902 903
+	
+0 bb = 10 4	
+	   0   0   0   0
+	 100 100 100 100
+	 200 200 200 200
+	 300 300 300 300
+	 400 400 400 400
+	 500 500 500 500
+	 600 600 600 600
+	 700 700 700 700
+	 800 800 800 800
+	 900 900 900 900
+	
+times: compile 0.00659s, execution 0.001295s,  mpirank:0
+ ######## We forget of deleting   0 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =191648
+ CodeAlloc : nb ptr  4625,  size :558192 mpirank: 0
+Ok: Normal End
+FreeFem++-mpi finalize correctly .
+
+PASS: mortar-DN-4-mpi.edp
+=========================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './mortar-DN-4-mpi.edp'
+mortar : 
+ 0 GC  g^2 =0.428118
+CG:0  ro = 0.0721197 ||g||^2 = 0.0264588 0
+CG:1  ro = 0.214614 ||g||^2 = 4.19092e-05 0
+CG:2  ro = 0.318302 ||g||^2 = 4.55824e-06 0
+CG:3  ro = 0.165315 ||g||^2 = 3.48007e-06 0
+CG:4  ro = 0.136371 ||g||^2 = 1.883e-08 0
+CG:5  ro = 0.300952 ||g||^2 = 1.48007e-10 0
+CG:6  ro = 0.230115 ||g||^2 = 8.45765e-11 0
+CG:7  ro = 0.0899447 ||g||^2 = 4.50756e-12 0
+CG converges 7  ro = 0.0899447 ||g||^2 = 4.50756e-12 stop=0 /Stop= 0
+Fin CG  2
+Fin CG  0
+Fin CG  1
+Fin CG  3
+
+PASS: MPICGLap.edp
+==================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './MPICGLap.edp'
+LinearCG (Linear)  err=0
+ before  ...  0
+ rank = 0
+0 Ihi = #  HashMatrix Matrix (COO) 0x2ce3600
+#    n       m        nnz     half     fortran   state  
+25 25 5 0 0 0 0 
+         4         0 1
+         9         5 1
+        14        10 1
+        19        15 1
+        24        20 1
+ ---- 
+25	
+	  1	  1	  1	  1	0.5
+	  1	  1	  1	  1	0.5
+	  1	  1	  1	  1	0.5
+	  1	  1	  1	  1	0.5
+	  1	  1	  1	  1	0.5
+	
+LinearCG (Linear)  err=0
+ before  ...  1
+ rank = 1
+1 Ihi = #  HashMatrix Matrix (COO) 0x34c7010
+#    n       m        nnz     half     fortran   state  
+25 25 5 0 0 0 0 
+         0         4 1
+         5         9 1
+        10        14 1
+        15        19 1
+        20        24 1
+ ---- 
+25	
+	0.5	  1	  1	  1	  1
+	0.5	  1	  1	  1	  1
+	0.5	  1	  1	  1	  1
+	0.5	  1	  1	  1	  1
+	0.5	  1	  1	  1	  1
+	
+LinearCG (Linear)  err=0
+ before  ...  2
+LinearCG (Linear)  err=3.55271e-15
+ before  ...  3
+CG:49  ro = 0.825255 ||g||^2 = 2.57527e-07
+CG converges 65  ro = 0.347809 ||g||^2 = 5.82366e-09
+CG:49  ro = 0.825255 ||g||^2 = 2.57527e-07
+CG converges 65  ro = 0.347809 ||g||^2 = 5.82366e-09
+ err = 4.72113e-09 1.25898e-29
+
+PASS: DDM-Schwarz-Lame-2d.edp
+=============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './DDM-Schwarz-Lame-2d.edp'
+ Final N=10 nloc =10 split =1
+ sizeoverlaps=1  nnn = 2
+0 number of jpart 2 : 1 2 
+ *** end build partition 
+ *** end build mesh  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+1 number of jpart 1 : 0 
+2 number of jpart 2 : 0 3 
+3 number of jpart 1 : 2 
+CheckUpdate  1.06581e-14 rank: 0
+GMRES: 1 3.3062e-06 0.00175956 0.00187899 < 1e-10
+GMRES: 2 1.6335e-07 0.00175956 9.28355e-05 < 1e-10
+GMRES: 3 3.63039e-08 0.00175956 2.06323e-05 < 1e-10
+GMRES: 4 5.47525e-09 0.00175956 3.11171e-06 < 1e-10
+GMRES: 5 8.88775e-10 0.00175956 5.05112e-07 < 1e-10
+GMRES: 6 9.98315e-11 0.00175956 5.67366e-08 < 1e-10
+GMRES: 7 2.56811e-11 0.00175956 1.45952e-08 < 1e-10
+GMRES: 8 1.46409e-12 0.00175956 8.32075e-10 < 1e-10
+GMRES: 9 2.08498e-13 0.00175956 1.18494e-10 < 1e-10
+GMRES: 10 4.11168e-14 0.00175956 2.33676e-11 < 1e-10
+GMRES converges: 10 4.11168e-14 0.00175956 2.33676e-11 < 1e-10
+ umax global  = 1.35502e-05 Wtime = 0.0335353 s  10
+
+PASS: DDM-Schwarz-Lame-3d.edp
+=============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './DDM-Schwarz-Lame-3d.edp'
+ Final N=5 nloc =5 split =1
+ sizeoverlaps=1  nnn = 2
+2 number of jpart 1 : 3 
+0 number of jpart 1 : 1 
+ *** end build partition 
+ *** end build mesh  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+1 number of jpart 2 : 0 3 
+3 number of jpart 2 : 1 2 
+CheckUpdate  2.22045e-15 rank: 0
+GMRES: 1 0.000385261 0.00870166 0.0442744 < 1e-10
+GMRES: 2 1.12971e-06 0.00870166 0.000129827 < 1e-10
+GMRES: 3 4.58048e-08 0.00870166 5.26392e-06 < 1e-10
+GMRES: 4 7.97034e-09 0.00870166 9.15956e-07 < 1e-10
+GMRES: 5 3.55533e-10 0.00870166 4.0858e-08 < 1e-10
+GMRES: 6 3.58164e-11 0.00870166 4.11604e-09 < 1e-10
+GMRES: 7 2.07716e-12 0.00870166 2.38709e-10 < 1e-10
+GMRES: 8 1.58697e-13 0.00870166 1.82375e-11 < 1e-10
+GMRES converges: 8 1.58697e-13 0.00870166 1.82375e-11 < 1e-10
+ umax global  = 2.86946e-05 Wtime = 0.748953 s  8
+ On A Fin
+ On A Fin
+ On A Fin
+ On A Fin
+
+PASS: DDM-Schwarz-Lap-2dd.edp
+=============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 10 ../../src/mpi/FreeFem++-mpi -nw './DDM-Schwarz-Lap-2dd.edp'
+ Final N=10 nloc =10 split =1
+9 number of jpart 2 : 7 8 
+ sizeoverlaps=1  nnn = 2
+0 number of jpart 1 : 1 
+ *** end build partition 
+ *** end build mesh  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+CheckUpdate  3.55271e-15 rank: 0
+2 number of jpart 2 : 4 6 
+4 number of jpart 2 : 2 3 
+5 number of jpart 2 : 6 8 
+6 number of jpart 2 : 2 5 
+7 number of jpart 1 : 9 
+8 number of jpart 2 : 5 9 
+1 number of jpart 2 : 0 3 
+3 number of jpart 2 : 1 4 
+GMRES: 1 1.08388 1206.8 0.000898137 < 1e-10
+GMRES: 2 0.0596381 1206.8 4.94182e-05 < 1e-10
+GMRES: 3 0.00333405 1206.8 2.76271e-06 < 1e-10
+GMRES: 4 0.000150994 1206.8 1.25119e-07 < 1e-10
+GMRES: 5 1.51674e-05 1206.8 1.25682e-08 < 1e-10
+GMRES: 6 1.68839e-06 1206.8 1.39906e-09 < 1e-10
+GMRES: 7 9.48106e-08 1206.8 7.85634e-11 < 1e-10
+GMRES converges: 7 9.48106e-08 1206.8 7.85634e-11 < 1e-10
+ umax global  = 26 Wtime = 0.0193816 s  7
+
+PASS: DDM-Schwarz-Lap-3d.edp
+============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 10 ../../src/mpi/FreeFem++-mpi -nw './DDM-Schwarz-Lap-3d.edp'
+ Final N=20 nloc =20 split =1
+ sizeoverlaps=1  nnn = 2
+4 number of jpart 3 : 2 3 7 
+8 number of jpart 4 : 5 6 7 9 
+1 number of jpart 4 : 0 2 5 6 
+2 number of jpart 5 : 0 1 3 4 5 
+6 number of jpart 5 : 0 1 5 8 9 
+7 number of jpart 5 : 3 4 5 8 9 
+0 number of jpart 6 : 1 2 3 5 6 9 
+ *** end build partition 
+3 number of jpart 6 : 0 2 4 5 7 9 
+ *** end build mesh  intersection  
+9 number of jpart 6 : 0 3 5 6 7 8 
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+5 number of jpart 8 : 0 1 2 3 6 7 8 9 
+CheckUpdate  9.10383e-15 rank: 0
+GMRES: 1 31.2256 13248.7 0.00235687 < 1e-10
+GMRES: 2 7.32762 13248.7 0.000553082 < 1e-10
+GMRES: 3 2.02254 13248.7 0.000152659 < 1e-10
+GMRES: 4 0.388705 13248.7 2.93391e-05 < 1e-10
+GMRES: 5 0.0904212 13248.7 6.8249e-06 < 1e-10
+GMRES: 6 0.0203281 13248.7 1.53434e-06 < 1e-10
+GMRES: 7 0.00480099 13248.7 3.62374e-07 < 1e-10
+GMRES: 8 0.00132112 13248.7 9.97164e-08 < 1e-10
+GMRES: 9 0.000371634 13248.7 2.80505e-08 < 1e-10
+GMRES: 10 9.04783e-05 13248.7 6.82921e-09 < 1e-10
+GMRES: 11 1.95664e-05 13248.7 1.47685e-09 < 1e-10
+GMRES: 12 4.36802e-06 13248.7 3.29693e-10 < 1e-10
+GMRES: 13 1.06629e-06 13248.7 8.04828e-11 < 1e-10
+GMRES converges: 13 1.06629e-06 13248.7 8.04828e-11 < 1e-10
+ umax global  = 1.05621 Wtime = 0.703101 s  13
+
+PASS: DDM-Schwarz-Stokes-2d.edp
+===============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 2 ../../src/mpi/FreeFem++-mpi -nw './DDM-Schwarz-Stokes-2d.edp'
+ Final N=10 nloc =10 split =1
+ sizeoverlaps=1  nnn = 2
+0 number of jpart 1 : 1 
+ *** end build partition 
+ *** end build mesh  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+1 number of jpart 1 : 0 
+0 0 err = 80.5872 u. max  28.8395
+0 1 err = 1.30881e+07 u. max  793223
+0 2 err = 2.12617e+07 u. max  793223
+0 3 err = 2.62294e+07 u. max  1.0943e+06
+0 4 err = 2.9505e+07 u. max  1.0943e+06
+0 5 err = 3.18158e+07 u. max  1.23435e+06
+0 6 err = 3.35063e+07 u. max  1.23435e+06
+0 7 err = 3.47196e+07 u. max  1.30788e+06
+0 8 err = 3.56424e+07 u. max  1.30788e+06
+0 9 err = 3.63052e+07 u. max  1.34804e+06
+0 10 err = 3.68309e+07 u. max  1.34804e+06
+0 11 err = 3.7205e+07 u. max  1.37071e+06
+0 12 err = 3.75168e+07 u. max  1.37071e+06
+0 13 err = 3.77336e+07 u. max  1.38386e+06
+0 14 err = 3.79254e+07 u. max  1.38386e+06
+0 15 err = 3.80535e+07 u. max  1.39162e+06
+0 16 err = 3.81753e+07 u. max  1.39162e+06
+0 17 err = 3.82518e+07 u. max  1.39626e+06
+0 18 err = 3.83313e+07 u. max  1.39626e+06
+0 19 err = 3.83769e+07 u. max  1.39902e+06
+0 20 err = 3.84301e+07 u. max  1.39902e+06
+0 21 err = 3.84569e+07 u. max  1.40064e+06
+0 22 err = 3.84933e+07 u. max  1.40064e+06
+0 23 err = 3.85086e+07 u. max  1.40157e+06
+0 24 err = 3.85341e+07 u. max  1.40157e+06
+0 25 err = 3.85422e+07 u. max  1.40206e+06
+0 26 err = 3.85605e+07 u. max  1.40206e+06
+0 27 err = 3.85642e+07 u. max  1.40229e+06
+0 28 err = 3.85776e+07 u. max  1.40229e+06
+0 29 err = 3.85787e+07 u. max  1.40236e+06
+0 30 err = 3.85887e+07 u. max  1.40236e+06
+0 31 err = 3.85882e+07 u. max  1.40233e+06
+0 32 err = 3.8596e+07 u. max  1.40233e+06
+0 33 err = 3.85946e+07 u. max  1.40224e+06
+0 34 err = 3.86006e+07 u. max  1.40224e+06
+0 35 err = 3.85988e+07 u. max  1.40213e+06
+0 36 err = 3.86037e+07 u. max  1.40213e+06
+0 37 err = 3.86016e+07 u. max  1.40201e+06
+0 38 err = 3.86056e+07 u. max  1.40201e+06
+0 39 err = 3.86035e+07 u. max  1.40188e+06
+0 40 err = 3.86068e+07 u. max  1.40188e+06
+0 41 err = 3.86048e+07 u. max  1.40176e+06
+0 42 err = 3.86076e+07 u. max  1.40176e+06
+0 43 err = 3.86057e+07 u. max  1.40165e+06
+0 44 err = 3.86081e+07 u. max  1.40165e+06
+0 45 err = 3.86063e+07 u. max  1.40154e+06
+0 46 err = 3.86083e+07 u. max  1.40154e+06
+0 47 err = 3.86068e+07 u. max  1.40145e+06
+0 48 err = 3.86085e+07 u. max  1.40145e+06
+0 49 err = 3.86071e+07 u. max  1.40136e+06
+0 50 err = 3.86086e+07 u. max  1.40136e+06
+0 51 err = 3.86073e+07 u. max  1.40128e+06
+0 52 err = 3.86086e+07 u. max  1.40128e+06
+0 53 err = 3.86075e+07 u. max  1.40121e+06
+0 54 err = 3.86086e+07 u. max  1.40121e+06
+0 55 err = 3.86076e+07 u. max  1.40115e+06
+0 56 err = 3.86086e+07 u. max  1.40115e+06
+0 57 err = 3.86077e+07 u. max  1.40109e+06
+0 58 err = 3.86086e+07 u. max  1.40109e+06
+0 59 err = 3.86078e+07 u. max  1.40104e+06
+0 60 err = 3.86086e+07 u. max  1.40104e+06
+0 61 err = 3.86078e+07 u. max  1.401e+06
+0 62 err = 3.86085e+07 u. max  1.401e+06
+0 63 err = 3.86079e+07 u. max  1.40096e+06
+0 64 err = 3.86085e+07 u. max  1.40096e+06
+0 65 err = 3.86079e+07 u. max  1.40092e+06
+0 66 err = 3.86085e+07 u. max  1.40092e+06
+0 67 err = 3.8608e+07 u. max  1.40089e+06
+0 68 err = 3.86084e+07 u. max  1.40089e+06
+0 69 err = 3.8608e+07 u. max  1.40087e+06
+0 70 err = 3.86084e+07 u. max  1.40087e+06
+0 71 err = 3.8608e+07 u. max  1.40084e+06
+0 72 err = 3.86084e+07 u. max  1.40084e+06
+0 73 err = 3.8608e+07 u. max  1.40082e+06
+0 74 err = 3.86084e+07 u. max  1.40082e+06
+0 75 err = 3.86081e+07 u. max  1.4008e+06
+0 76 err = 3.86084e+07 u. max  1.4008e+06
+0 77 err = 3.86081e+07 u. max  1.40079e+06
+0 78 err = 3.86083e+07 u. max  1.40079e+06
+0 79 err = 3.86081e+07 u. max  1.40077e+06
+0 80 err = 3.86083e+07 u. max  1.40077e+06
+0 81 err = 3.86081e+07 u. max  1.40076e+06
+0 82 err = 3.86083e+07 u. max  1.40076e+06
+0 83 err = 3.86081e+07 u. max  1.40075e+06
+0 84 err = 3.86083e+07 u. max  1.40075e+06
+0 85 err = 3.86081e+07 u. max  1.40074e+06
+0 86 err = 3.86083e+07 u. max  1.40074e+06
+0 87 err = 3.86081e+07 u. max  1.40073e+06
+0 88 err = 3.86083e+07 u. max  1.40073e+06
+0 89 err = 3.86082e+07 u. max  1.40072e+06
+0 90 err = 3.86083e+07 u. max  1.40072e+06
+0 91 err = 3.86082e+07 u. max  1.40071e+06
+0 92 err = 3.86083e+07 u. max  1.40071e+06
+0 93 err = 3.86082e+07 u. max  1.40071e+06
+0 94 err = 3.86083e+07 u. max  1.40071e+06
+0 95 err = 3.86082e+07 u. max  1.4007e+06
+0 96 err = 3.86083e+07 u. max  1.4007e+06
+0 97 err = 3.86082e+07 u. max  1.4007e+06
+0 98 err = 3.86083e+07 u. max  1.4007e+06
+0 99 err = 3.86082e+07 u. max  1.40069e+06
+ umax global  = 1.40069e+06 Wtime = 0.0701716 s  99
+
+PASS: MPIGMRES2D.edp
+====================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './MPIGMRES2D.edp'
+1 number of jpart 2 : 0 3 
+2 number of jpart 2 : 0 3 
+3 number of jpart 3 : 0 1 2 
+ Final N=33 nloc =11 split =3
+ nlayer=1
+0 number of jpart 3 : 1 2 3 
+ *** end build partition 
+ *** end build mesh  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+GMRES: 1 1.45392 3.64165 0.399248 < 1e-06
+GMRES: 2 0.755196 3.64165 0.207378 < 1e-06
+GMRES: 3 0.383958 3.64165 0.105435 < 1e-06
+GMRES: 4 0.119079 3.64165 0.0326991 < 1e-06
+GMRES: 5 0.036003 3.64165 0.00988646 < 1e-06
+GMRES: 6 0.00888442 3.64165 0.00243967 < 1e-06
+GMRES: 7 0.00246243 3.64165 0.000676185 < 1e-06
+GMRES: 8 0.000847444 3.64165 0.000232709 < 1e-06
+GMRES: 9 0.00024202 3.64165 6.64589e-05 < 1e-06
+GMRES: 10 4.9273e-05 3.64165 1.35304e-05 < 1e-06
+GMRES: 11 6.57481e-06 3.64165 1.80545e-06 < 1e-06
+GMRES: 12 1.14108e-06 3.64165 3.13342e-07 < 1e-06
+GMRES converges: 12 1.14108e-06 3.64165 3.13342e-07 < 1e-06
+ umax global  = 0.133395 Wtime = 0.0292117 s  12
+
+PASS: MPIGMRES3D.edp
+====================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './MPIGMRES3D.edp'
+ Final N=20 nloc =10 split =2
+ nlayer=1
+0 number of jpart 3 : 1 2 3 
+ sum min 1 1
+ *** end build partition 
+3 number of jpart 3 : 0 1 2 
+ sum min 1 1
+2 number of jpart 3 : 0 1 3 
+ sum min 1 1
+1 number of jpart 3 : 0 2 3 
+ sum min 1 1
+ *** end build mesh3  intersection  
+ *** end build transfert matrix 
+ *** end init  data for send/revc  
+GMRES: 1 27.0286 15025.8 0.00179882 < 1e-06
+GMRES: 2 2.81304 15025.8 0.000187214 < 1e-06
+GMRES: 3 0.335542 15025.8 2.23311e-05 < 1e-06
+GMRES: 4 0.0435011 15025.8 2.8951e-06 < 1e-06
+GMRES: 5 0.00627321 15025.8 4.17497e-07 < 1e-06
+GMRES converges: 5 0.00627321 15025.8 4.17497e-07 < 1e-06
+ umax global  = 1.05623 Wtime = 2.68461 s  5
+
+PASS: parmetis-3d.edp
+=====================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './parmetis-3d.edp'
+METIS: 2.19101
+ParMETIS: 0.180638
+
+PASS: parmetis.edp
+==================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './parmetis.edp'
+METIS: 1.1485
+ParMETIS: 0.31167
+
+PASS: parmmg.edp
+================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './parmmg.edp'
+
+PASS: cavityNewton-MUMPS.edp
+============================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './cavityNewton-MUMPS.edp'
+0 iter = 0  101.497 rey = 100
+0 iter = 1  0.208738 rey = 100
+0 iter = 2  0.00203758 rey = 100
+0 iter = 3  4.0879e-07 rey = 100
+1 iter = 0  0.113929 rey = 100
+1 iter = 1  0.000114023 rey = 100
+1 iter = 2  1.02675e-09 rey = 100
+0 iter = 0  1.50279 rey = 200
+0 iter = 1  0.183192 rey = 200
+0 iter = 2  0.00531795 rey = 200
+0 iter = 3  3.42097e-06 rey = 200
+0 iter = 4  1.76506e-10 rey = 200
+1 iter = 0  0.0402046 rey = 200
+1 iter = 1  5.048e-05 rey = 200
+1 iter = 2  4.58479e-10 rey = 200
+0 iter = 0  1.82927 rey = 400
+0 iter = 1  0.482992 rey = 400
+0 iter = 2  0.0228555 rey = 400
+0 iter = 3  0.000135695 rey = 400
+0 iter = 4  2.66907e-09 rey = 400
+1 iter = 0  0.0584546 rey = 400
+1 iter = 1  0.000666826 rey = 400
+1 iter = 2  2.17338e-07 rey = 400
+0 iter = 0  2.28346 rey = 800
+0 iter = 1  1.02274 rey = 800
+0 iter = 2  0.125094 rey = 800
+0 iter = 3  0.00680033 rey = 800
+0 iter = 4  3.17136e-06 rey = 800
+0 iter = 5  3.41468e-10 rey = 800
+1 iter = 0  0.0835994 rey = 800
+1 iter = 1  0.00284882 rey = 800
+1 iter = 2  9.03098e-07 rey = 800
+0 iter = 0  2.56552 rey = 1600
+0 iter = 1  1.28114 rey = 1600
+0 iter = 2  0.172568 rey = 1600
+0 iter = 3  0.0261591 rey = 1600
+0 iter = 4  5.25799e-05 rey = 1600
+0 iter = 5  1.38305e-09 rey = 1600
+1 iter = 0  0.13072 rey = 1600
+1 iter = 1  0.00501475 rey = 1600
+1 iter = 2  8.23718e-06 rey = 1600
+1 iter = 3  1.68928e-10 rey = 1600
+0 iter = 0  2.85118 rey = 3200
+0 iter = 1  1.34248 rey = 3200
+0 iter = 2  0.309442 rey = 3200
+0 iter = 3  0.0538234 rey = 3200
+0 iter = 4  0.000247213 rey = 3200
+0 iter = 5  3.74046e-08 rey = 3200
+1 iter = 0  0.143671 rey = 3200
+1 iter = 1  0.00899504 rey = 3200
+1 iter = 2  5.28709e-05 rey = 3200
+1 iter = 3  1.87134e-09 rey = 3200
+0 iter = 0  3.01012 rey = 6400
+0 iter = 1  1.46246 rey = 6400
+0 iter = 2  0.453778 rey = 6400
+0 iter = 3  0.0884095 rey = 6400
+0 iter = 4  0.00102984 rey = 6400
+0 iter = 5  4.31783e-07 rey = 6400
+1 iter = 0  0.238898 rey = 6400
+1 iter = 1  0.0353221 rey = 6400
+1 iter = 2  0.000487704 rey = 6400
+1 iter = 3  8.53521e-08 rey = 6400
+
+PASS: LaplaceRT-3d-matrix-mumps.edp
+===================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './LaplaceRT-3d-matrix-mumps.edp'
+ u = 11 22 33
+ dx u = 100 100 100
+ e  = 99 193 305
+ ex = 99 193 305
+ dx,dy,dz   e1x= 0 -20 10
+ dx,dy,dz   e2x= 20 0 -30
+ dx,dy,dz   e3x= -10 30 0
+ dx,dy,dz   e1 = 0 -20 10
+ dx,dy,dz   e2 = 20 0 -30
+ dx,dy,dz   e3 = -10 30 0
+ k = 1313
+2925 2878 2933 2734
+ df = 0.165 -0.055 0.005 0.005
+ u = 11 22 33
+ dx u = 100 100 100
+ e  = 99 193 305
+ ex = 99 193 305
+ dx,dy,dz   e1x= 0 -20 10
+ dx,dy,dz   e2x= 20 0 -30
+ dx,dy,dz   e3x= -10 30 0
+ dx,dy,dz   e1 = 0 -20 10
+ dx,dy,dz   e2 = 20 0 -30
+ dx,dy,dz   e3 = -10 30 0
+ k = 1313
+2925 2878 2933 2734
+ df = 0.165 -0.055 0.005 0.005
+ u = 11 22 33
+ dx u = 100 100 100
+ e  = 99 193 305
+ ex = 99 193 305
+ dx,dy,dz   e1x= 0 -20 10
+ dx,dy,dz   e2x= 20 0 -30
+ dx,dy,dz   e3x= -10 30 0
+ dx,dy,dz   e1 = 0 -20 10
+ dx,dy,dz   e2 = 20 0 -30
+ dx,dy,dz   e3 = -10 30 0
+ k = 1313
+2925 2878 2933 2734
+ df = 0.165 -0.055 0.005 0.005
+ u = 11 22 33
+ dx u = 100 100 100
+ e  = 99 193 305
+ ex = 99 193 305
+ dx,dy,dz   e1x= 0 -20 10
+ dx,dy,dz   e2x= 20 0 -30
+ dx,dy,dz   e3x= -10 30 0
+ dx,dy,dz   e1 = 0 -20 10
+ dx,dy,dz   e2 = 20 0 -30
+ dx,dy,dz   e3 = -10 30 0
+ k = 1313
+2925 2878 2933 2734
+ df = 0.165 -0.055 0.005 0.005
+ vv: = 0 0 0
+ vv: = 0 0 0
+ vv: = 0 0 0
+ vv: = 0 0 0
+ vv: = 2 3 4 100
+ v : = 2 3 4
+ vv: = 2 3 4 100
+ v : = 2 3 4
+ vv: = 2 3 4 100
+ v : = 2 3 4
+ vv: = 2 3 4 100
+ v : = 2 3 4
+=============================
+CPU TIME Lapl: 0.043043
+=============================
+=============================
+CPU TIME Lapl Mixte:         
+ matrix         0.06476
+ factorization  0.000351
+ second menber  0.012843
+ solving        0.163354
+=============================
+=============================
+CPU TIME Lapl: 0.044718
+=============================
+=============================
+CPU TIME Lapl Mixte:         
+ matrix         0.065644
+ factorization  0.000367
+ second menber  0.012177
+ solving        0.164032
+=============================
+=============================
+CPU TIME Lapl: 0.044418
+=============================
+=============================
+CPU TIME Lapl Mixte:         
+ matrix         0.06557
+ factorization  0.000351
+ second menber  0.01228
+ solving        0.163927
+=============================
+=============================
+CPU TIME Lapl: 0.04299
+=============================
+=============================
+CPU TIME Lapl Mixte:         
+ matrix         0.065075
+ factorization  0.000363
+ second menber  0.012431
+ solving        0.163728
+=============================
+ int 2 x,yz 0.5 0.5 0
+ int 2 gn 2 3 4
+ int 2 x,yz 0.5 0.5 0
+ int 2 x,yz 0.5 0.5 0
+ int 2 gn 2 3 4
+ int 2 x,yz 0.5 0.5 0
+ int 2 gn 2 3 4
+ int 2 U  0 0 0
+ int 2 V  2 3 4
+ int 2 DP 0 0 0
+  diff: u Gamma_2 4
+  diff: P Gamma_2 4
+ diff err L2 :0
+    P     L2 :0
+ int 2 U  0.368893 0.368893 4
+ int 2 V  2 3 4
+ int 2 DP 9.45424e-17 -2.00361e-16 2.35301
+  diff: u Gamma_2 5.49308e-16
+  diff: P Gamma_2 2.04603
+ diff err L2 :0.0338156
+    P     L2 :0.912812
+ int 2 gn 2 3 4
+ int 2 U  0 0 0
+ int 2 V  2 3 4
+ int 2 DP 0 0 0
+  diff: u Gamma_2 4
+  diff: P Gamma_2 4
+ diff err L2 :0
+    P     L2 :0
+ int 2 U  0 0 0
+ int 2 V  2 3 4
+ int 2 DP 0 0 0
+  diff: u Gamma_2 4
+  diff: P Gamma_2 4
+ diff err L2 :0
+    P     L2 :0
+    p     L2 :0
+    p     L2 :0.908133
+    p     L2 :0
+    p     L2 :0
+
+PASS: MUMPS.edp
+===============
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './MUMPS.edp'
+ A nnz 1037401
+ B nnz 1037401
+ A nnz 63
+ B nnz 63
+ A nnz 63
+ B nnz 63
+ A nnz 63
+ B nnz 63
+ A :  u 88258.2 2.67611
+ B :  u 88258.2 2.67611
+mumps: info B1 = 0 , / r 1.22605e+09
+mumps: info B2 = 0 , / r 1.34288e+07
+mumps: info B3 = 8344019 , / r 1.22605e+09
+mumps: info B4 = 1411600 , / r 0
+mumps: info B5 = 604 , / r 0
+mumps: info B6 = 23938 , / r 0
+mumps: info B7 = 5 , / r 0
+mumps: info B8 = 100 , / r 0
+mumps: info B9 = 8344019 , / r 0
+mumps: info B10 = 1411600 , / r 0
+mumps: info B11 = 604 , / r 0
+mumps: info B12 = 0 , / r 0
+mumps: info B13 = 0 , / r 0
+mumps: info B14 = 0 , / r 0
+mumps: info B15 = 0 , / r 66.7522
+mumps: info B16 = 40 , / r 0
+mumps: info B17 = 153 , / r 93.6463
+mumps: info B18 = 40 , / r 127.91
+mumps: info B19 = 153 , / r 0.0169067
+mumps: info B20 = 8344019 , / r 0.0169067
+mumps: info B21 = 34 , / r 1.07444
+mumps: info B22 = 129 , / r 0
+mumps: info B23 = 0 , / r 0
+mumps: info B24 = 1 , / r 0
+mumps: info B25 = 0 , / r 0
+mumps: info B26 = 24 , / r 0
+mumps: info B27 = 90 , / r 0
+mumps: info B28 = 0 , / r 0
+mumps: info B29 = 8344019 , / r 0
+mumps: info B30 = 35 , / r 0
+mumps: info B31 = 133 , / r 0
+mumps: info B32 = 1 , / r 0
+mumps: info B33 = 7 , / r 0
+mumps: info B34 = 0 , / r 0
+mumps: info B35 = 8344019 , / r 0
+mumps: info B36 = 0 , / r 0
+mumps: info B37 = 0 , / r 0
+mumps: info B38 = 0 , / r 0
+mumps: info B39 = 0 , / r 0
+mumps: info B40 = 0 , / r 0
+ D u 103314 1.29469 3
+ On Fini
+ D u 103314 1.29469 1
+ On Fini
+ D u 103314 1.29469 2
+ On Fini
+ D u 103314 1.29469 0
+ On Fini
+
+PASS: NSI3d-carac-mumps.edp
+===========================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './NSI3d-carac-mumps.edp'
+initilisation
+initilisation
+initilisation
+initilisation
+ iteration 0 t = 0.3
+ iteration 0 t = 0.3
+ iteration 0 t = 0.3
+ iteration 0 t = 0.3
+ iteration 1 t = 0.6
+ iteration 1 t = 0.6
+ iteration 1 t = 0.6
+ iteration 1 t = 0.6
+ iteration 2 t = 0.9
+ iteration 2 t = 0.9
+ iteration 2 t = 0.9
+ iteration 2 t = 0.9
+ iteration 3 t = 1.2
+ iteration 3 t = 1.2
+ iteration 3 t = 1.2
+ iteration 3 t = 1.2
+ iteration 4 t = 1.5
+ iteration 4 t = 1.5
+ iteration 4 t = 1.5
+ iteration 4 t = 1.5
+============ CPU TIME ==========================
+= Intialisation Stokes :::         =
+= matrix                           =0.22569
+= Factorization                    =0.000408
+= second member                    =0.001414
+= solving                          =0.375001
+= all                              =0.602513
+============ CPU TIME ==========================
+= Navier Stokes :::                =
+= matrix                           =0.204849
+= Factorization                    =0.000301
+= second member by step (dt)       =0.371487
+= solving by step (dt)             =0.0582524
+= all step solving                 =2.16923
+= solving Navier Stokes            =4.52307
+============ CPU TIME ==========================
+============ CPU TIME ==========================
+= Intialisation Stokes :::         =
+= matrix                           =0.225619
+= Factorization                    =0.000437
+= second member                    =0.001412
+= solving                          =0.374742
+= all                              =0.60221
+============ CPU TIME ==========================
+= Navier Stokes :::                =
+= matrix                           =0.20541
+= Factorization                    =0.000303
+= second member by step (dt)       =0.273581
+= solving by step (dt)             =0.156715
+= all step solving                 =2.1685
+= solving Navier Stokes            =4.52569
+============ CPU TIME ==========================
+============ CPU TIME ==========================
+= Intialisation Stokes :::         =
+= matrix                           =0.225528
+= Factorization                    =0.000427
+= second member                    =0.001326
+= solving                          =0.374972
+= all                              =0.602253
+============ CPU TIME ==========================
+= Navier Stokes :::                =
+= matrix                           =0.204631
+= Factorization                    =0.000315
+= second member by step (dt)       =0.374633
+= solving by step (dt)             =0.0549074
+= all step solving                 =2.16989
+= solving Navier Stokes            =4.52254
+============ CPU TIME ==========================
+============ CPU TIME ==========================
+= Intialisation Stokes :::         =
+= matrix                           =0.225049
+= Factorization                    =0.000417
+= second member                    =0.001332
+= solving                          =0.375046
+= all                              =0.601844
+============ CPU TIME ==========================
+= Navier Stokes :::                =
+= matrix                           =0.204842
+= Factorization                    =0.00031
+= second member by step (dt)       =0.373449
+= solving by step (dt)             =0.056346
+= all step solving                 =2.16989
+= solving Navier Stokes            =4.52402
+============ CPU TIME ==========================
+
+PASS: Stokes-v1-matrix-mumps.edp
+================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Stokes-v1-matrix-mumps.edp' -n 5
+size of matrix 4209 x 4209 nn nzero coef  = 164397
+============= CPU TIME ============
+size of matrix 4209 x 4209 nn nzero coef  = 164397
+ matrix                  0.0351332
+ Fact                    0.000408596
+ second member           0.000698219
+ solve                   0.111535
+                          ------------
+ all                     0.147787
+============= CPU TIME ============
+
+PASS: Stokes-v2-matrix-mumps.edp
+================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Stokes-v2-matrix-mumps.edp' -n 5
+============= CPU TIME ============
+ matrix                  0.115404
+ Fact                    0.001589
+ second member           0.013769
+ solve                   0.153915
+                          ------------
+ all                     0.29489
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.117032
+ Fact                    0.000409
+ second member           0.014912
+ solve                   0.152767
+                          ------------
+ all                     0.295411
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.115403
+ Fact                    0.001439
+ second member           0.013815
+ solve                   0.153975
+                          ------------
+ all                     0.294767
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.116936
+ Fact                    0.000588
+ second member           0.014993
+ solve                   0.152825
+                          ------------
+ all                     0.295651
+============= CPU TIME ============
+
+PASS: Stokes-v3-matrix-mumps.edp
+================================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './Stokes-v3-matrix-mumps.edp'
+ Volume region  0 0.250667
+ Volume region  1 0.249333
+ Volume region  2 0.250667
+ Volume region  3 0.249333
+ Volume region  4 0
+============= CPU TIME ============
+ matrix                  0.048587
+ Fact                    0.001443
+ second member           0.010347
+ solve                   0.071516
+                          ------------
+ all                     0.142194
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.048398
+ Fact                    0.00099
+ second member           0.010461
+ solve                   0.071477
+                          ------------
+ all                     0.141753
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.049293
+ Fact                    0.000319
+ second member           0.010287
+ solve                   0.071358
+                          ------------
+ all                     0.141568
+============= CPU TIME ============
+============= CPU TIME ============
+ matrix                  0.048155
+ Fact                    0.00085
+ second member           0.010411
+ solve                   0.071592
+                          ------------
+ all                     0.142375
+============= CPU TIME ============
+
+PASS: testsolver_MUMPS.edp
+==========================
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './testsolver_MUMPS.edp'
+xx=5	
+	  1	 32	 45	  7	  2
+	
+solving solution
+5	
+	  0	  0	  0	  0	  0
+	
+b=5	
+	2065	384	1800	154012	944
+	
+xx=5	
+	  1	 32	 45	7000	  2
+	
+solving solution
+b=5	
+	2065	384	1800	154012	944
+	
+x=
+5	
+	  0	  0	  0	  0	  0
+	
+5	
+	  0	  0	  0	  0	  0
+	
+b=5	
+	2065	384	1800	154012	944
+	
+xx=5	
+	  1	 32	 45	7000	  2
+	
+solving solution
+b=5	
+	2065	384	1800	154012	944
+	
+x=
+5	
+	  0	  0	  0	  0	  0
+	
+5	
+	  0	  0	  0	  0	  0
+	
+b=5	
+	2065	384	1800	154012	944
+	
+xx=5	
+	  1	 32	 45	7000	  2
+	
+solving solution
+b=5	
+	2065	384	1800	154012	944
+	
+x=
+5	
+	  0	  0	  0	  0	  0
+	
+b=5	
+	2065	384	1800	166	944
+	
+x=
+5	
+	  1	 32	 45	  7	  2
+	
+x-xx=
+Linf 5.32907e-15 L2 6.10522e-15
+b=5	
+	2065	384	1800	154012	944
+	
+xx=5	
+	  1	 32	 45	7000	  2
+	
+solving solution
+b=5	
+	2065	384	1800	154012	944
+	
+x=
+5	
+	  1	 32	 45	7000	  2
+	
+x-xx=
+Linf 5.32907e-15 L2 5.49308e-15
+
+PASS: VG.edp
+============
+
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v4/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 4 ../../src/mpi/FreeFem++-mpi -nw './VG.edp'
+lambda,mu,gravity =115079 83333.3 -0.05
+lambda,mu,gravity =115079 83333.3 -0.05
+lambda,mu,gravity =115079 83333.3 -0.05
+lambda,mu,gravity =115079 83333.3 -0.05
+===============================================
+====            CPU time                  =====
+===============================================
+ ALL solving steps :::: 5.57846
+ Matrix            :::: 2.50504
+ Fact              :::: 0.000402
+ Second member     :::: 0.073347
+ Solve             :::: 2.99962
+===============================================
+===============================================
+====            CPU time                  =====
+===============================================
+ ALL solving steps :::: 5.57879
+ Matrix            :::: 2.50517
+ Fact              :::: 0.000423
+ Second member     :::: 0.069442
+ Solve             :::: 3.0037
+===============================================
+0 max deplacement = 1.43944e-06
+===============================================
+====            CPU time                  =====
+===============================================
+ ALL solving steps :::: 5.58057
+ Matrix            :::: 2.50663
+ Fact              :::: 0.000396
+ Second member     :::: 0.070679
+ Solve             :::: 3.00281
+===============================================
+===============================================
+====            CPU time                  =====
+===============================================
+ ALL solving steps :::: 5.57654
+ Matrix            :::: 2.50441
+ Fact              :::: 0.000411
+ Second member     :::: 0.073665
+ Solve             :::: 2.998
+===============================================
+
+SKIP: LapMPIEigenValue.edp
+==========================
+
+SKIP ../../src/mpi/ff-mpirun -np 4 -nw ./LapMPIEigenValue.edp
+
