@@ -6,17 +6,29 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 # Folder Structure
 
 1. poisson/NLPoisson  : Codes and files related to stochastic linear Poisson problem
-2. kledata : Multiplication tensors required for running the stochastic code
-3. macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
-4. macros : current generated macros for the problem
-5. output : outputs with .vtu files
-6. cluster : files required for running the code in cluster
+2. poisson/kledata : Multiplication tensors required for running the stochastic code
+3. poisson/macro_0X_DX : pre generated macros to run the main code for different number random variables and order of expansion. can be copied over to macros folder while running.
+4. poisson/macros : current generated macros for the problem
+5. poisson/output : outputs with .vtu files
+6. poisson/cluster : files required for running the code in cluster
 
 # Software needed
-1. FreeFEM : Installation instructions for FreeFEM in Digital Alliance of Canada clusters is given in ./cluster/freefem_install_intel2020.txt
+1. FreeFEM : Installation instructions for FreeFEM in Digital Alliance of Canada clusters is given in ./cluster/install_FreeFEM.txt
 2. Paraview
 3. g++
 4. MATLAB
+
+
+# Instructions to run stochastic Poisson in cluster
+
+
+1. Install the FreeFEM package as detailed in : ./cluster/install_FreeFEM.txt
+
+2. Use the instructions inside ./cluster/instructions_parallel.txt for compiling the code interactively or by submitting a batch script.
+
+3. A batch script is provided inside ./cluster/runff_beluga_withparam.sh. Note that, you need to change the path to your installation and filename accordingly.
+
+
 
 # Instructions to run stochastic Poisson in user machine 
 
@@ -95,15 +107,6 @@ Linear and Nonlinear Poisson problems with diffusion coefficient modelled as ran
 3. .vtu files inside ./output folder.
 
 
-# Instructions to run stochastic Poisson in cluster
 
-1. Use the given batch script : runff_beluga_withparam.sh given inside folder ./cluster/. Note this requires FreeFEM to be installed in the cluster.
-
-# Please refer to the article and the repository if you use this code
- 
-
-
-
-
-
+# Please cite the article and the repository if you use this code
 
