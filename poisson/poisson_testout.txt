@@ -1,0 +1,251 @@
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 20 /home/sudhipv/projects/def-asarkar/sudhipv/FreeFem-sources-4.13/src/mpi/FreeFem++-mpi -nw 'poisson_process2LV2.edp' -ksp_view
+Number of Vertices for coarse grid  2601
+Number of Vertices for fine mesh is  10201
+3	
+	-111111	  2	  3	
+number of random variable  3
+order of input  2
+order of output  3
+Number of input PC   10
+Number of output PC  20
+Mean of Gaussian  0
+Sd of Gaussian  0.3
+Size of linear System  204020
+sindex is 25 2	
+	   1   1
+	   1   2
+	   2   1
+	   2   2
+	   1   3
+	   3   1
+	   2   3
+	   3   2
+	   1   4
+	   4   1
+	   3   3
+	   2   4
+	   4   2
+	   3   4
+	   4   3
+	   1   5
+	   5   1
+	   2   5
+	   5   2
+	   4   4
+	   3   5
+	   5   3
+	   1   6
+	   6   1
+	   2   6
+	
+mindex for file ./kledata/multiIndex00030003.dat is 20 3	
+	   0   0   0
+	   1   0   0
+	   0   1   0
+	   0   0   1
+	   2   0   0
+	   1   1   0
+	   1   0   1
+	   0   2   0
+	   0   1   1
+	   0   0   2
+	   3   0   0
+	   2   1   0
+	   2   0   1
+	   1   2   0
+	   1   1   1
+	   1   0   2
+	   0   3   0
+	   0   2   1
+	   0   1   2
+	   0   0   3
+	
+Finished generating log normal input coefficients for rank 0
+Assembling matrices for level 0 and rank 0
+Assembling matrices for level 1 and rank 0
+Exited Assembling 0
+Starting solve for 0
+  0 KSP Residual norm 9.900000000000e-03 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 21
+  1 KSP Residual norm 6.569963573332e-03 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 21
+  2 KSP Residual norm 6.511626729745e-04 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 22
+  3 KSP Residual norm 7.709293149754e-05 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 20
+  4 KSP Residual norm 1.772578526193e-05 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 17
+  5 KSP Residual norm 2.345505980827e-06 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 19
+  6 KSP Residual norm 4.513756807603e-07 
+    Linear mg_coarse_ solve converged due to CONVERGED_RTOL iterations 19
+  7 KSP Residual norm 7.759048724642e-08 
+KSP Object: 20 MPI processes
+  type: fgmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=200, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  right preconditioning
+  using UNPRECONDITIONED norm type for convergence test
+PC Object: 20 MPI processes
+  type: mg
+    type is MULTIPLICATIVE, levels=2 cycles=v
+      Cycles per PCApply=1
+      Not using Galerkin computed coarse grid matrices
+  Coarse grid solver -- level 0 -------------------------------
+    KSP Object: (mg_coarse_) 20 MPI processes
+      type: gmres
+        restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+        happy breakdown tolerance 1e-30
+      maximum iterations=100, initial guess is zero
+      tolerances:  relative=0.01, absolute=1e-50, divergence=10000.
+      left preconditioning
+      using PRECONDITIONED norm type for convergence test
+    PC Object: (mg_coarse_) 20 MPI processes
+      type: asm
+        total subdomain blocks = 20, amount of overlap = 1
+        restriction/interpolation type - RESTRICT
+        Local solver information for first block is in the following KSP and PC objects on rank 0:
+        Use -mg_coarse_ksp_view ::ascii_info_detail to display information for all blocks
+      KSP Object: (mg_coarse_sub_) 1 MPI process
+        type: preonly
+        maximum iterations=10000, initial guess is zero
+        tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+        left preconditioning
+        using NONE norm type for convergence test
+      PC Object: (mg_coarse_sub_) 1 MPI process
+        type: ilu
+          out-of-place factorization
+          0 levels of fill
+          tolerance for zero pivot 2.22045e-14
+          matrix ordering: natural
+          factor fill ratio given 1., needed 1.
+            Factored matrix follows:
+              Mat Object: (mg_coarse_sub_) 1 MPI process
+                type: seqaij
+                rows=2940, cols=2940
+                package used to perform factorization: petsc
+                total: nonzeros=374000, allocated nonzeros=374000
+                  using I-node routines: found 588 nodes, limit used is 5
+        linear system matrix = precond matrix:
+        Mat Object: (mg_coarse_sub_) 1 MPI process
+          type: seqaij
+          rows=2940, cols=2940
+          total: nonzeros=374000, allocated nonzeros=374000
+          total number of mallocs used during MatSetValues calls=0
+            using I-node routines: found 588 nodes, limit used is 5
+      linear system matrix = precond matrix:
+      Mat Object: 20 MPI processes
+        type: mpiaij
+        rows=52020, cols=52020
+        total: nonzeros=7120400, allocated nonzeros=7120400
+        total number of mallocs used during MatSetValues calls=0
+          using I-node (on process 0) routines: found 484 nodes, limit used is 5
+  Down solver (pre-smoother) on level 1 -------------------------------
+    KSP Object: (mg_levels_1_) 20 MPI processes
+      type: chebyshev
+        Chebyshev polynomial of first kind
+        eigenvalue targets used: min 0.299998, max 3.29998
+        eigenvalues estimated via gmres: min 0.0452638, max 2.99998
+        eigenvalues estimated using gmres with transform: [0. 0.1; 0. 1.1]
+        KSP Object: (mg_levels_1_esteig_) 20 MPI processes
+          type: gmres
+            restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+            happy breakdown tolerance 1e-30
+          maximum iterations=10, initial guess is zero
+          tolerances:  relative=1e-12, absolute=1e-50, divergence=10000.
+          left preconditioning
+          using PRECONDITIONED norm type for convergence test
+        estimating eigenvalues using noisy right hand side
+      maximum iterations=2, nonzero initial guess
+      tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+      left preconditioning
+      using NONE norm type for convergence test
+    PC Object: (mg_levels_1_) 20 MPI processes
+      type: asm
+        total subdomain blocks = 20, amount of overlap = 1
+        restriction/interpolation type - BASIC
+        Local solver information for first block is in the following KSP and PC objects on rank 0:
+        Use -mg_levels_1_ksp_view ::ascii_info_detail to display information for all blocks
+      KSP Object: (mg_levels_1_sub_) 1 MPI process
+        type: preonly
+        maximum iterations=10000, initial guess is zero
+        tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+        left preconditioning
+        using NONE norm type for convergence test
+      PC Object: (mg_levels_1_sub_) 1 MPI process
+        type: lu
+          out-of-place factorization
+          tolerance for zero pivot 2.22045e-14
+          matrix ordering: external
+          factor fill ratio given 0., needed 0.
+            Factored matrix follows:
+              Mat Object: (mg_levels_1_sub_) 1 MPI process
+                type: mumps
+                rows=10980, cols=10980
+                package used to perform factorization: mumps
+                total: nonzeros=6726800, allocated nonzeros=6726800
+                  MUMPS run parameters:
+                    Use -mg_levels_1_sub_ksp_view ::ascii_info_detail to display information for all processes
+                    RINFOG(1) (global estimated flops for the elimination after analysis): 2.87182e+09
+                    RINFOG(2) (global estimated flops for the assembly after factorization): 8.8052e+06
+                    RINFOG(3) (global estimated flops for the elimination after factorization): 2.87182e+09
+                    (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+                    INFOG(3) (estimated real workspace for factors on all processors after analysis): 6726800
+                    INFOG(4) (estimated integer workspace for factors on all processors after analysis): 106080
+                    INFOG(5) (estimated maximum front size in the complete tree): 900
+                    INFOG(6) (number of nodes in the complete tree): 248
+                    INFOG(7) (ordering option effectively used after analysis): 5
+                    INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+                    INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 6726800
+                    INFOG(10) (total integer space store the matrix factors after factorization): 106080
+                    INFOG(11) (order of largest frontal matrix after factorization): 900
+                    INFOG(12) (number of off-diagonal pivots): 0
+                    INFOG(13) (number of delayed pivots after factorization): 0
+                    INFOG(14) (number of memory compress after factorization): 0
+                    INFOG(15) (number of steps of iterative refinement after solution): 0
+                    INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 88
+                    INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 88
+                    INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 88
+                    INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 88
+                    INFOG(20) (estimated number of entries in the factors): 6726800
+                    INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 77
+                    INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 77
+                    INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+                    INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+                    INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+                    INFOG(28) (after factorization: number of null pivots encountered): 0
+                    INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 6726800
+                    INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 77, 77
+                    INFOG(32) (after analysis: type of analysis done): 1
+                    INFOG(33) (value used for ICNTL(8)): 7
+                    INFOG(34) (exponent of the determinant if determinant is requested): 0
+                    INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 6726800
+                    INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+                    INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+                    INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+                    INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
+        linear system matrix = precond matrix:
+        Mat Object: (mg_levels_1_sub_) 1 MPI process
+          type: seqaij
+          rows=10980, cols=10980
+          total: nonzeros=1462800, allocated nonzeros=1462800
+          total number of mallocs used during MatSetValues calls=0
+            using I-node routines: found 2196 nodes, limit used is 5
+      linear system matrix = precond matrix:
+      Mat Object: 20 MPI processes
+        type: mpiaij
+        rows=204020, cols=204020
+        total: nonzeros=28240400, allocated nonzeros=28240400
+        total number of mallocs used during MatSetValues calls=0
+          using I-node (on process 0) routines: found 1976 nodes, limit used is 5
+  Up solver (post-smoother) same as down solver (pre-smoother)
+  linear system matrix = precond matrix:
+  Mat Object: 20 MPI processes
+    type: mpiaij
+    rows=204020, cols=204020
+    total: nonzeros=28240400, allocated nonzeros=28240400
+    total number of mallocs used during MatSetValues calls=0
+      using I-node (on process 0) routines: found 1976 nodes, limit used is 5
+time taken for solve is9.92427

@@ -1,0 +1,387 @@
+'/cvmfs/soft.computecanada.ca/easybuild/software/2023/x86-64-v3/Compiler/gcc12/openmpi/4.1.5/bin/mpiexec' --oversubscribe -np 20 /home/sudhipv/projects/def-asarkar/sudhipv/FreeFem-sources-4.13/src/mpi/FreeFem++-mpi -nw 'poisson_process2L_coarse.edp' -ksp_view
+Number of Vertices for coarse grid  2601
+Number of Vertices for fine mesh is  10201
+3	
+	-111111	  2	  3	
+number of random variable  3
+order of input  2
+order of output  3
+Number of input PC   10
+Number of output PC  20
+Mean of Gaussian  0
+Sd of Gaussian  0.3
+Size of linear System  204020
+sindex is 25 2	
+	   1   1
+	   1   2
+	   2   1
+	   2   2
+	   1   3
+	   3   1
+	   2   3
+	   3   2
+	   1   4
+	   4   1
+	   3   3
+	   2   4
+	   4   2
+	   3   4
+	   4   3
+	   1   5
+	   5   1
+	   2   5
+	   5   2
+	   4   4
+	   3   5
+	   5   3
+	   1   6
+	   6   1
+	   2   6
+	
+mindex for file ./kledata/multiIndex00030003.dat is 20 3	
+	   0   0   0
+	   1   0   0
+	   0   1   0
+	   0   0   1
+	   2   0   0
+	   1   1   0
+	   1   0   1
+	   0   2   0
+	   0   1   1
+	   0   0   2
+	   3   0   0
+	   2   1   0
+	   2   0   1
+	   1   2   0
+	   1   1   1
+	   1   0   2
+	   0   3   0
+	   0   2   1
+	   0   1   2
+	   0   0   3
+	
+Finished generating log normal input coefficients for rank 0
+Starting weak form generation 
+Assembly time 4.19033
+Exited Assembling 0
+Starting solve for 0
+  0 KSP Residual norm 1.119084447216e-02 
+  1 KSP Residual norm 1.119070609724e-02 
+  2 KSP Residual norm 1.119068263626e-02 
+  3 KSP Residual norm 1.119067985686e-02 
+  4 KSP Residual norm 1.119062745864e-02 
+  5 KSP Residual norm 1.119062516804e-02 
+  6 KSP Residual norm 1.119061972434e-02 
+  7 KSP Residual norm 1.119061501914e-02 
+  8 KSP Residual norm 1.119061464616e-02 
+  9 KSP Residual norm 1.119061288019e-02 
+ 10 KSP Residual norm 1.119060762571e-02 
+ 11 KSP Residual norm 1.119060756387e-02 
+ 12 KSP Residual norm 1.119059461534e-02 
+ 13 KSP Residual norm 1.119059391381e-02 
+ 14 KSP Residual norm 1.119059269214e-02 
+ 15 KSP Residual norm 1.119059269203e-02 
+ 16 KSP Residual norm 1.119057719378e-02 
+ 17 KSP Residual norm 1.119054219641e-02 
+ 18 KSP Residual norm 1.119054196691e-02 
+ 19 KSP Residual norm 1.119052796923e-02 
+ 20 KSP Residual norm 1.119052233824e-02 
+ 21 KSP Residual norm 1.119052158720e-02 
+ 22 KSP Residual norm 1.119052158690e-02 
+ 23 KSP Residual norm 1.119051920172e-02 
+ 24 KSP Residual norm 1.119043466065e-02 
+ 25 KSP Residual norm 1.119042178364e-02 
+ 26 KSP Residual norm 1.119039830231e-02 
+ 27 KSP Residual norm 1.119037333934e-02 
+ 28 KSP Residual norm 1.119037225680e-02 
+ 29 KSP Residual norm 1.119036732922e-02 
+ 30 KSP Residual norm 1.119021658669e-02 
+ 31 KSP Residual norm 1.119013917478e-02 
+ 32 KSP Residual norm 1.119013898275e-02 
+ 33 KSP Residual norm 1.119013507406e-02 
+ 34 KSP Residual norm 1.119013494965e-02 
+ 35 KSP Residual norm 1.119013405973e-02 
+ 36 KSP Residual norm 1.119013305083e-02 
+ 37 KSP Residual norm 1.119013271466e-02 
+ 38 KSP Residual norm 1.119013232227e-02 
+ 39 KSP Residual norm 1.119012783414e-02 
+ 40 KSP Residual norm 1.119012252375e-02 
+ 41 KSP Residual norm 1.119010221502e-02 
+ 42 KSP Residual norm 1.119010215971e-02 
+ 43 KSP Residual norm 1.119009668988e-02 
+ 44 KSP Residual norm 1.118991053704e-02 
+ 45 KSP Residual norm 1.118986662640e-02 
+ 46 KSP Residual norm 1.118986657706e-02 
+ 47 KSP Residual norm 1.118975408704e-02 
+ 48 KSP Residual norm 1.118975341679e-02 
+ 49 KSP Residual norm 1.118974763402e-02 
+ 50 KSP Residual norm 1.118974763047e-02 
+ 51 KSP Residual norm 1.118974713645e-02 
+ 52 KSP Residual norm 1.118973589659e-02 
+ 53 KSP Residual norm 1.118972853770e-02 
+ 54 KSP Residual norm 1.118972768615e-02 
+ 55 KSP Residual norm 1.118971967866e-02 
+ 56 KSP Residual norm 1.118968931014e-02 
+ 57 KSP Residual norm 1.118966049135e-02 
+ 58 KSP Residual norm 1.118962559757e-02 
+ 59 KSP Residual norm 1.118962195707e-02 
+ 60 KSP Residual norm 1.119135014397e-02 
+ 61 KSP Residual norm 1.119114559116e-02 
+ 62 KSP Residual norm 1.119101901754e-02 
+ 63 KSP Residual norm 1.119098130487e-02 
+ 64 KSP Residual norm 1.119097956271e-02 
+ 65 KSP Residual norm 1.119097775856e-02 
+ 66 KSP Residual norm 1.119097427750e-02 
+ 67 KSP Residual norm 1.119097264629e-02 
+ 68 KSP Residual norm 1.119094293806e-02 
+ 69 KSP Residual norm 1.119094131468e-02 
+ 70 KSP Residual norm 1.119092969171e-02 
+ 71 KSP Residual norm 1.119092482381e-02 
+ 72 KSP Residual norm 1.119092082516e-02 
+ 73 KSP Residual norm 1.119091814474e-02 
+ 74 KSP Residual norm 1.119089999968e-02 
+ 75 KSP Residual norm 1.119087806877e-02 
+ 76 KSP Residual norm 1.119086983321e-02 
+ 77 KSP Residual norm 1.119086791873e-02 
+ 78 KSP Residual norm 1.119086772375e-02 
+ 79 KSP Residual norm 1.119086724677e-02 
+ 80 KSP Residual norm 1.119085843725e-02 
+ 81 KSP Residual norm 1.119085018149e-02 
+ 82 KSP Residual norm 1.119085013764e-02 
+ 83 KSP Residual norm 1.119084735659e-02 
+ 84 KSP Residual norm 1.119083872454e-02 
+ 85 KSP Residual norm 1.119083738596e-02 
+ 86 KSP Residual norm 1.119082945050e-02 
+ 87 KSP Residual norm 1.119081612080e-02 
+ 88 KSP Residual norm 1.119081548995e-02 
+ 89 KSP Residual norm 1.119081521085e-02 
+ 90 KSP Residual norm 1.119157901845e-02 
+ 91 KSP Residual norm 1.119095310396e-02 
+ 92 KSP Residual norm 1.119080277791e-02 
+ 93 KSP Residual norm 1.119042859325e-02 
+ 94 KSP Residual norm 1.119036671211e-02 
+ 95 KSP Residual norm 1.119035436129e-02 
+ 96 KSP Residual norm 1.119035310878e-02 
+ 97 KSP Residual norm 1.119033466126e-02 
+ 98 KSP Residual norm 1.119031537415e-02 
+ 99 KSP Residual norm 1.119031372002e-02 
+100 KSP Residual norm 1.119029549943e-02 
+101 KSP Residual norm 1.119029549046e-02 
+102 KSP Residual norm 1.119029493527e-02 
+103 KSP Residual norm 1.119026491900e-02 
+104 KSP Residual norm 1.119026415452e-02 
+105 KSP Residual norm 1.119025473418e-02 
+106 KSP Residual norm 1.119025257174e-02 
+107 KSP Residual norm 1.119020236223e-02 
+108 KSP Residual norm 1.119019593089e-02 
+109 KSP Residual norm 1.119018389376e-02 
+110 KSP Residual norm 1.119017500761e-02 
+111 KSP Residual norm 1.119016319697e-02 
+112 KSP Residual norm 1.118992524483e-02 
+113 KSP Residual norm 1.118989319987e-02 
+114 KSP Residual norm 1.118984562379e-02 
+115 KSP Residual norm 1.118983688168e-02 
+116 KSP Residual norm 1.118983440976e-02 
+117 KSP Residual norm 1.118982980342e-02 
+118 KSP Residual norm 1.118980833092e-02 
+119 KSP Residual norm 1.118959822969e-02 
+120 KSP Residual norm 1.119205901175e-02 
+121 KSP Residual norm 1.119202981418e-02 
+122 KSP Residual norm 1.119202056504e-02 
+123 KSP Residual norm 1.119201597550e-02 
+124 KSP Residual norm 1.119199952040e-02 
+125 KSP Residual norm 1.119199448385e-02 
+126 KSP Residual norm 1.119199311857e-02 
+127 KSP Residual norm 1.119199094714e-02 
+128 KSP Residual norm 1.119188774676e-02 
+129 KSP Residual norm 1.119187027605e-02 
+130 KSP Residual norm 1.119186967022e-02 
+131 KSP Residual norm 1.119186653720e-02 
+132 KSP Residual norm 1.119186410765e-02 
+133 KSP Residual norm 1.119185844195e-02 
+134 KSP Residual norm 1.119183202734e-02 
+135 KSP Residual norm 1.119183197098e-02 
+136 KSP Residual norm 1.119182370240e-02 
+137 KSP Residual norm 1.119182369625e-02 
+138 KSP Residual norm 1.119182358537e-02 
+139 KSP Residual norm 1.119172968567e-02 
+140 KSP Residual norm 1.119172937612e-02 
+141 KSP Residual norm 1.119172900215e-02 
+142 KSP Residual norm 1.119172287451e-02 
+143 KSP Residual norm 1.119172136437e-02 
+144 KSP Residual norm 1.119172012314e-02 
+145 KSP Residual norm 1.119169294042e-02 
+146 KSP Residual norm 1.119168808956e-02 
+147 KSP Residual norm 1.119165870447e-02 
+148 KSP Residual norm 1.119164890258e-02 
+149 KSP Residual norm 1.119164648348e-02 
+150 KSP Residual norm 1.119217978546e-02 
+151 KSP Residual norm 1.119217880469e-02 
+152 KSP Residual norm 1.119215590879e-02 
+153 KSP Residual norm 1.119196397201e-02 
+154 KSP Residual norm 1.119195857965e-02 
+155 KSP Residual norm 1.119194132923e-02 
+156 KSP Residual norm 1.119193412264e-02 
+157 KSP Residual norm 1.119193412016e-02 
+158 KSP Residual norm 1.119192059666e-02 
+159 KSP Residual norm 1.119191789524e-02 
+160 KSP Residual norm 1.119191748029e-02 
+161 KSP Residual norm 1.119191744304e-02 
+162 KSP Residual norm 1.119167555888e-02 
+163 KSP Residual norm 1.119166316748e-02 
+164 KSP Residual norm 1.119165802136e-02 
+165 KSP Residual norm 1.119160493396e-02 
+166 KSP Residual norm 1.119152361121e-02 
+167 KSP Residual norm 1.119150927905e-02 
+168 KSP Residual norm 1.119147889183e-02 
+169 KSP Residual norm 1.119144856255e-02 
+170 KSP Residual norm 1.119144776583e-02 
+171 KSP Residual norm 1.119143950012e-02 
+172 KSP Residual norm 1.119143388127e-02 
+173 KSP Residual norm 1.119142688129e-02 
+174 KSP Residual norm 1.119141504875e-02 
+175 KSP Residual norm 1.119141256329e-02 
+176 KSP Residual norm 1.119137962589e-02 
+177 KSP Residual norm 1.119119593783e-02 
+178 KSP Residual norm 1.119112107457e-02 
+179 KSP Residual norm 1.119111915070e-02 
+180 KSP Residual norm 1.119327706682e-02 
+181 KSP Residual norm 1.119322715695e-02 
+182 KSP Residual norm 1.119289159506e-02 
+183 KSP Residual norm 1.119288348842e-02 
+184 KSP Residual norm 1.119283489213e-02 
+185 KSP Residual norm 1.119269887291e-02 
+186 KSP Residual norm 1.119266036023e-02 
+187 KSP Residual norm 1.119258146222e-02 
+188 KSP Residual norm 1.119253522878e-02 
+189 KSP Residual norm 1.119252966024e-02 
+190 KSP Residual norm 1.119250320887e-02 
+191 KSP Residual norm 1.119249524794e-02 
+192 KSP Residual norm 1.119249488121e-02 
+193 KSP Residual norm 1.119247093572e-02 
+194 KSP Residual norm 1.119246740736e-02 
+195 KSP Residual norm 1.119246725997e-02 
+196 KSP Residual norm 1.119246537217e-02 
+197 KSP Residual norm 1.119240995270e-02 
+198 KSP Residual norm 1.119239068595e-02 
+199 KSP Residual norm 1.119237831858e-02 
+200 KSP Residual norm 1.119236391461e-02 
+KSP Object: 20 MPI processes
+  type: fgmres
+    restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+    happy breakdown tolerance 1e-30
+  maximum iterations=200, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  right preconditioning
+  using UNPRECONDITIONED norm type for convergence test
+PC Object: 20 MPI processes
+  type: mg
+    type is MULTIPLICATIVE, levels=1 cycles=v
+      Cycles per PCApply=1
+      Not using Galerkin computed coarse grid matrices
+  Coarse grid solver -- level 0 -------------------------------
+    KSP Object: (mg_levels_0_) 20 MPI processes
+      type: chebyshev
+        Chebyshev polynomial of first kind
+        eigenvalue targets used: min 1.46489, max 16.1138
+        eigenvalues estimated via gmres: min -27.7068, max 14.6489
+        eigenvalues estimated using gmres with transform: [0. 0.1; 0. 1.1]
+        KSP Object: (mg_levels_0_esteig_) 20 MPI processes
+          type: gmres
+            restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
+            happy breakdown tolerance 1e-30
+          maximum iterations=10, initial guess is zero
+          tolerances:  relative=1e-12, absolute=1e-50, divergence=10000.
+          left preconditioning
+          using PRECONDITIONED norm type for convergence test
+        estimating eigenvalues using noisy right hand side
+      maximum iterations=2, initial guess is zero
+      tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+      left preconditioning
+      using NONE norm type for convergence test
+    PC Object: (mg_levels_0_) 20 MPI processes
+      type: asm
+        total subdomain blocks = 20, amount of overlap = 1
+        restriction/interpolation type - BASIC
+        Local solver information for first block is in the following KSP and PC objects on rank 0:
+        Use -mg_levels_0_ksp_view ::ascii_info_detail to display information for all blocks
+      KSP Object: (mg_levels_0_sub_) 1 MPI process
+        type: preonly
+        maximum iterations=10000, initial guess is zero
+        tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+        left preconditioning
+        using NONE norm type for convergence test
+      PC Object: (mg_levels_0_sub_) 1 MPI process
+        type: lu
+          out-of-place factorization
+          tolerance for zero pivot 2.22045e-14
+          matrix ordering: external
+          factor fill ratio given 0., needed 0.
+            Factored matrix follows:
+              Mat Object: (mg_levels_0_sub_) 1 MPI process
+                type: mumps
+                rows=13420, cols=13420
+                package used to perform factorization: mumps
+                total: nonzeros=8928400, allocated nonzeros=8928400
+                  MUMPS run parameters:
+                    Use -mg_levels_0_sub_ksp_view ::ascii_info_detail to display information for all processes
+                    RINFOG(1) (global estimated flops for the elimination after analysis): 4.34126e+09
+                    RINFOG(2) (global estimated flops for the assembly after factorization): 1.11684e+07
+                    RINFOG(3) (global estimated flops for the elimination after factorization): 4.34126e+09
+                    (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+                    INFOG(3) (estimated real workspace for factors on all processors after analysis): 8928400
+                    INFOG(4) (estimated integer workspace for factors on all processors after analysis): 129060
+                    INFOG(5) (estimated maximum front size in the complete tree): 1120
+                    INFOG(6) (number of nodes in the complete tree): 293
+                    INFOG(7) (ordering option effectively used after analysis): 5
+                    INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+                    INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 8928400
+                    INFOG(10) (total integer space store the matrix factors after factorization): 129060
+                    INFOG(11) (order of largest frontal matrix after factorization): 1120
+                    INFOG(12) (number of off-diagonal pivots): 0
+                    INFOG(13) (number of delayed pivots after factorization): 0
+                    INFOG(14) (number of memory compress after factorization): 0
+                    INFOG(15) (number of steps of iterative refinement after solution): 0
+                    INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 117
+                    INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 117
+                    INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 117
+                    INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 117
+                    INFOG(20) (estimated number of entries in the factors): 8928400
+                    INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 102
+                    INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 102
+                    INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+                    INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+                    INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+                    INFOG(28) (after factorization: number of null pivots encountered): 0
+                    INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 8928400
+                    INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 104, 104
+                    INFOG(32) (after analysis: type of analysis done): 1
+                    INFOG(33) (value used for ICNTL(8)): 7
+                    INFOG(34) (exponent of the determinant if determinant is requested): 0
+                    INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 8928400
+                    INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+                    INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+                    INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+                    INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
+        linear system matrix = precond matrix:
+        Mat Object: (mg_levels_0_sub_) 1 MPI process
+          type: seqaij
+          rows=13420, cols=13420
+          total: nonzeros=1796400, allocated nonzeros=1796400
+          total number of mallocs used during MatSetValues calls=0
+            using I-node routines: found 2684 nodes, limit used is 5
+      linear system matrix = precond matrix:
+      Mat Object: 20 MPI processes
+        type: mpiaij
+        rows=282620, cols=282620
+        total: nonzeros=37930000, allocated nonzeros=37930000
+        total number of mallocs used during MatSetValues calls=0
+          using I-node (on process 0) routines: found 2684 nodes, limit used is 5
+  linear system matrix = precond matrix:
+  Mat Object: 20 MPI processes
+    type: mpiaij
+    rows=282620, cols=282620
+    total: nonzeros=37930000, allocated nonzeros=37930000
+    total number of mallocs used during MatSetValues calls=0
+      using I-node (on process 0) routines: found 2684 nodes, limit used is 5
+time taken for solve is40.0998
