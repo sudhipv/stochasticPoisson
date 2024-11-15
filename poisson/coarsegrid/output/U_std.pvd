@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<VTKFile T="0" type="Collection" version="0.1"
+         byte_order="LittleEndian"
+         compressor="vtkZLibDataCompressor">
+  <Collection>
+    <DataSet timestep="0" group="" part="0"
+             file="U_std_0000.vtu"/>
+  </Collection>
+</VTKFile>

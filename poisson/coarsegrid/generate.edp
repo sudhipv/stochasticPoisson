@@ -1,0 +1,152 @@
+include "getARGV.idp"
+
+
+ofstream ff("./macros/ssinit.edp");
+
+real ordOUT = getARGV("-ordOUT", 3);
+real nRV = getARGV("-nRV", 3);
+
+real ordIN = getARGV("-ordIN", 2);
+
+real muG = getARGV("-muG", 0);
+real sigmaG = getARGV("-sigmaG", 0.3);
+
+
+func real fact(real num)
+{
+
+    real temp = 1.0;
+
+    for(int n = 0; n < num ; n++)
+    {
+
+        temp = temp * (n+1);
+    }
+
+
+    return temp;
+}
+
+real inPC  = fact(ordIN+nRV)/( fact(ordIN) * fact(nRV) ) ;
+real outPC = fact(ordOUT+nRV)/ ( fact(ordOUT) * fact(nRV) );
+
+ff << "real nRV = " << nRV << ";" << endl;
+ff << "real muG = " << muG << ";" << endl;
+ff << "real sigmaG = " << sigmaG << ";" << endl;
+ff << "real ordOUT = "<< ordOUT <<";" << endl;
+ff << "real ordIN = " << ordIN << ";" << endl;
+ff << "real inPC = " << inPC << ";" << endl;
+ff << "real outPC = " << outPC << ";" << endl;
+
+
+int N = outPC;
+assert(N > 0);
+
+
+// Generating fespace
+//fespace Vh(Th, P1, P1, P1, P1);
+
+ff<< "func Pk = [";
+for(int i = 0; i < N; ++i) {
+    ff << " P1";
+    if(i != N-1)
+        ff << ",";
+    else
+        ff << "];";
+}
+ff << endl;
+
+
+//Generating macro
+//macro def(i)[i, i#1]// EOM          // vector field definition
+
+ff<< "macro def(i)[i,";
+for(int i = 0; i < N-1; ++i) {
+    ff << " i#"<<i+1;
+    if(i != N-2)
+        ff << ",";
+    else
+        ff << "] //EOM";
+}
+ff << endl;
+
+
+//macro init(i)[i, i]// EOM           // vector field initialization
+
+ff<< "macro init(i)[";
+for(int i = 0; i < N; ++i) {
+    ff << "i";
+    if(i != N-1)
+        ff << ", ";
+    else
+        ff << "]//EOM";
+}
+ff << endl;
+
+
+
+//###################################################################################
+
+
+ofstream fh("./macros/ssolution.edp");
+
+
+/*
+sol[0] = U;
+sol[1] = U1;
+sol[2] = U2;
+sol[3] = U3;
+*/
+
+fh << "sol[0] = U;";
+fh << endl;
+for(int i = 0; i < N-1; ++i) {
+    fh << "sol[" << i+1 << "] = "<< "U"<< i+1 <<";"<< endl;
+}
+
+fh << endl;
+
+
+ofstream fi("./macros/ssweakform1.edp");
+
+
+fi << "varf stoPoisson(def(U), def(V)) = int2d(Th[l])(  coeffmult(U,V) ) + int2d(Th[l])(UtransV(b,V))"+
+                                                    "+ on(1,2,3,4, U = 0,";
+
+ for (int i = 1; i < N-1; ++i)
+ {
+
+     fi << "U"<<i<<"=0,";
+
+
+ }
+
+ fi << "U"<<outPC-1<<"=0);";
+
+
+
+ofstream fj("./macros/ssweakform2.edp");
+
+fj << "varf stoPoisson(def(U), def(V)) = int2d(Th[l])(  coeffmult(U,V) ) + int2d(Th[l])(UtransV(b,V))"+
+                                                    "+ on(7,8,9,10, U = 0,";
+
+ for (int i = 1; i < N-1; ++i)
+ {
+
+     fj << "U"<<i<<"=0,";
+
+
+ }
+
+ fj << "U"<<outPC-1<<"=0);";
+
+
+
+//###################################################################################
+
+
+
+
+
+
+

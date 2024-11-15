@@ -1,0 +1,1 @@
+varf stoPoissoncoarse(defcoarse(Uc), defcoarse(Vc)) = int2d(Th[l])(  coeffmultcoarse(Uc,Vc) ) + int2d(Th[l])(UtransVcoarse(bcoarse,Vc))+ on(1,2,3,4, Uc = 0,Uc1=0,Uc2=0,Uc3=0);

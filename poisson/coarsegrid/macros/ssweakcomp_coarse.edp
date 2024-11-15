@@ -1,0 +1,21 @@
+macro UtransVcoarse(u,v)(u*v + u#1*v#1 + u#2*v#2 + u#3*v#3)//EOM
+[bcoarse,bcoarse1,bcoarse2,bcoarse3] =[f,0,0,0];
+
+macro coeffmultcoarse(u,v)(
+(1*Cd[0] ) *  Grad(u)' *  Grad(v)  + 
+(1*Cd[1] ) *  Grad(u#1)' *  Grad(v)  + 
+(1*Cd[2] ) *  Grad(u#2)' *  Grad(v)  + 
+(1*Cd[3] ) *  Grad(u#3)' *  Grad(v)  + 
+(1*Cd[1] ) *  Grad(u)' *  Grad(v#1)  + 
+(1*Cd[0]+1.41421*Cd[4] ) *  Grad(u#1)' *  Grad(v#1)  + 
+(1*Cd[5] ) *  Grad(u#2)' *  Grad(v#1)  + 
+(1*Cd[6] ) *  Grad(u#3)' *  Grad(v#1)  + 
+(1*Cd[2] ) *  Grad(u)' *  Grad(v#2)  + 
+(1*Cd[5] ) *  Grad(u#1)' *  Grad(v#2)  + 
+(1*Cd[0]+1.41421*Cd[7] ) *  Grad(u#2)' *  Grad(v#2)  + 
+(1*Cd[8] ) *  Grad(u#3)' *  Grad(v#2)  + 
+(1*Cd[3] ) *  Grad(u)' *  Grad(v#3)  + 
+(1*Cd[6] ) *  Grad(u#1)' *  Grad(v#3)  + 
+(1*Cd[8] ) *  Grad(u#2)' *  Grad(v#3)  + 
+(1*Cd[0]+1.41421*Cd[9] ) *  Grad(u#3)' *  Grad(v#3)  ) //EOM
+
